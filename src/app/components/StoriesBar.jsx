@@ -956,7 +956,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "motion/react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
-
+import { AnimatePresence } from "motion/react";
 const CLIENTS = [
   {
     id: "adobe",
@@ -1315,104 +1315,578 @@ function VideoViewer({ clients, activeIdx, setActiveIdx, onClose, closing }) {
 // ─────────────────────────────────────────────────────────────────────────────
 // INFINITE CAROUSEL STRIP
 // ─────────────────────────────────────────────────────────────────────────────
-function InfiniteCarousel({ onClientClick, viewedIds }) {
-  const trackRef = useRef(null);
-  const animRef = useRef(null);
-  const posRef = useRef(0);
-  const pausedRef = useRef(false);
-  const SPEED = 0.5;
+// function InfiniteCarousel({ onClientClick, viewedIds }) {
+//   const trackRef = useRef(null);
+//   const animRef = useRef(null);
+//   const posRef = useRef(0);
+//   const pausedRef = useRef(false);
+//   const SPEED = 0.5;
 
-  const items = [...CLIENTS, ...CLIENTS];
+//   const items = [...CLIENTS, ...CLIENTS];
 
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
+//   useEffect(() => {
+//     const track = trackRef.current;
+//     if (!track) return;
 
-    const halfWidth = track.scrollWidth / 2;
+//     const halfWidth = track.scrollWidth / 2;
 
-    const tick = () => {
-      if (!pausedRef.current) {
-        posRef.current += SPEED;
-        if (posRef.current >= halfWidth) posRef.current = 0;
-        track.style.transform = `translateX(-${posRef.current}px)`;
-      }
-      animRef.current = requestAnimationFrame(tick);
-    };
+//     const tick = () => {
+//       if (!pausedRef.current) {
+//         posRef.current += SPEED;
+//         if (posRef.current >= halfWidth) posRef.current = 0;
+//         track.style.transform = `translateX(-${posRef.current}px)`;
+//       }
+//       animRef.current = requestAnimationFrame(tick);
+//     };
 
-    animRef.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(animRef.current);
-  }, []);
+//     animRef.current = requestAnimationFrame(tick);
+//     return () => cancelAnimationFrame(animRef.current);
+//   }, []);
+
+//   return (
+//     <div
+//       className="overflow-hidden w-full"
+//       onMouseEnter={() => {
+//         pausedRef.current = true;
+//       }}
+//       onMouseLeave={() => {
+//         pausedRef.current = false;
+//       }}
+//       onTouchStart={() => {
+//         pausedRef.current = true;
+//       }}
+//       onTouchEnd={() => {
+//         pausedRef.current = false;
+//       }}
+//     >
+//       <div
+//         ref={trackRef}
+//         className="flex gap-4 px-4 py-4 will-change-transform"
+//         style={{ width: "max-content" }}
+//       >
+//         {items.map((c, idx) => (
+//           <motion.button
+//             key={`${c.id}-${idx}`}
+//             onClick={() => onClientClick(idx % CLIENTS.length)}
+//             className="flex flex-col items-center gap-1.5 flex-shrink-0"
+//             whileTap={{ scale: 0.92 }}
+//           >
+//             <div
+//               className={`p-[2px] rounded-full ${
+//                 viewedIds.has(c.id)
+//                   ? "bg-muted"
+//                   : "bg-gradient-to-tr from-lime-700 via-lime-400 to-primary"
+//               }`}
+//             >
+//               <div className="w-[54px] h-[54px] rounded-full border-2 border-background overflow-hidden bg-white flex items-center justify-center">
+//                 <img
+//                   src={c.logo}
+//                   alt={c.name}
+//                   className="w-8 h-8 object-contain"
+//                   onError={(e) => {
+//                     e.currentTarget.style.display = "none";
+//                     e.currentTarget.nextSibling.style.display = "flex";
+//                   }}
+//                 />
+//                 <div
+//                   className={`w-full h-full rounded-full bg-gradient-to-br ${c.bg} items-center justify-center hidden`}
+//                 >
+//                   <span
+//                     style={{ fontFamily: "var(--font-heading)" }}
+//                     className="text-xs font-bold text-white"
+//                   >
+//                     {c.initials}
+//                   </span>
+//                 </div>
+//               </div>
+//             </div>
+//             <span
+//               style={{ fontFamily: "var(--font-sans)" }}
+//               className="text-[10px] text-foreground/65 w-16 text-center truncate leading-tight"
+//             >
+//               {c.name}
+//             </span>
+//           </motion.button>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// }
+
+function ClientsCarousel({ onClientClick, viewedIds }) {
+  const ITEMS_PER_PAGE = 6;
+
+  const [page, setPage] = useState(0);
+
+  const pages = [];
+
+  for (let i = 0; i < CLIENTS.length; i += ITEMS_PER_PAGE) {
+    pages.push(CLIENTS.slice(i, i + ITEMS_PER_PAGE));
+  }
+
+  const totalPages = pages.length;
+
+  const hasPrev = page > 0;
+  const hasNext = page < totalPages - 1;
+
+  const goPrev = () => {
+    if (hasPrev) {
+      setPage((p) => p - 1);
+    }
+  };
+
+  const goNext = () => {
+    if (hasNext) {
+      setPage((p) => p + 1);
+    }
+  };
 
   return (
-    <div
-      className="overflow-hidden w-full"
-      onMouseEnter={() => {
-        pausedRef.current = true;
-      }}
-      onMouseLeave={() => {
-        pausedRef.current = false;
-      }}
-      onTouchStart={() => {
-        pausedRef.current = true;
-      }}
-      onTouchEnd={() => {
-        pausedRef.current = false;
-      }}
-    >
-      <div
-        ref={trackRef}
-        className="flex gap-4 px-4 py-4 will-change-transform"
-        style={{ width: "max-content" }}
-      >
-        {items.map((c, idx) => (
-          <motion.button
-            key={`${c.id}-${idx}`}
-            onClick={() => onClientClick(idx % CLIENTS.length)}
-            className="flex flex-col items-center gap-1.5 flex-shrink-0"
-            whileTap={{ scale: 0.92 }}
+    <div className="relative w-full py-4">
+      <div className="flex justify-center">
+        <div
+          className="relative overflow-hidden"
+          style={{
+            width: "520px",
+          }}
+        >
+          <motion.div
+            className="flex"
+            animate={{
+              x: `-${page * 100}%`,
+            }}
+            transition={{
+              duration: 0.55,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           >
-            <div
-              className={`p-[2px] rounded-full ${
-                viewedIds.has(c.id)
-                  ? "bg-muted"
-                  : "bg-gradient-to-tr from-lime-700 via-lime-400 to-primary"
-              }`}
-            >
-              <div className="w-[54px] h-[54px] rounded-full border-2 border-background overflow-hidden bg-white flex items-center justify-center">
-                <img
-                  src={c.logo}
-                  alt={c.name}
-                  className="w-8 h-8 object-contain"
-                  onError={(e) => {
-                    e.currentTarget.style.display = "none";
-                    e.currentTarget.nextSibling.style.display = "flex";
-                  }}
-                />
-                <div
-                  className={`w-full h-full rounded-full bg-gradient-to-br ${c.bg} items-center justify-center hidden`}
-                >
-                  <span
-                    style={{ fontFamily: "var(--font-heading)" }}
-                    className="text-xs font-bold text-white"
+            {pages.map((clients, pageIndex) => (
+              <div
+                key={pageIndex}
+                className="relative flex gap-4 min-w-full justify-center"
+              >
+                {/* PREV BUTTON */}
+                {pageIndex === page && hasPrev && (
+                  <button
+                    onClick={goPrev}
+                    className="
+                      absolute
+                      left-4
+                      top-6
+                      z-30
+                      w-6
+                      h-6
+                      rounded-full
+                      bg-white
+                      shadow-lg
+                      border
+                      border-gray-200
+                      flex
+                      items-center
+                      justify-center
+                      hover:scale-105
+                      transition-all
+                    "
                   >
-                    {c.initials}
-                  </span>
-                </div>
+                    <ChevronLeft size={16} />
+                  </button>
+                )}
+
+                {/* CLIENTS */}
+                {clients.map((c, idx) => (
+                  <motion.button
+                    key={c.id}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() =>
+                      onClientClick(pageIndex * ITEMS_PER_PAGE + idx)
+                    }
+                    className="flex flex-col items-center gap-1.5 flex-shrink-0"
+                  >
+                    <div
+                      className={`p-[2px] rounded-full ${
+                        viewedIds.has(c.id)
+                          ? "bg-muted"
+                          : "bg-gradient-to-tr from-orange-500 via-pink-500 to-purple-500"
+                      }`}
+                    >
+                      <div className="w-16 h-16 rounded-full bg-white p-[2px]">
+                        <img
+                          src={c.logo}
+                          alt={c.name}
+                          className="w-full h-full rounded-full object-cover"
+                          onError={(e) => {
+                            e.currentTarget.style.display = "none";
+                            e.currentTarget.nextSibling.style.display = "flex";
+                          }}
+                        />
+
+                        <div
+                          className={`hidden w-full h-full rounded-full bg-gradient-to-br ${c.bg} items-center justify-center`}
+                        >
+                          <span
+                            style={{
+                              fontFamily: "var(--font-heading)",
+                            }}
+                            className="text-xs font-bold text-white"
+                          >
+                            {c.initials}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <span
+                      style={{
+                        fontFamily: "var(--font-sans)",
+                      }}
+                      className="text-[11px] text-center w-16 truncate"
+                    >
+                      {c.name}
+                    </span>
+                  </motion.button>
+                ))}
+
+                {/* NEXT BUTTON */}
+                {pageIndex === page && hasNext && (
+                  <button
+                    onClick={goNext}
+                    className="
+                      absolute
+                      right-4
+                      top-6
+                      z-30
+                      w-6
+                      h-6
+                      rounded-full
+                      bg-white
+                      shadow-lg
+                      border
+                      border-gray-200
+                      flex
+                      items-center
+                      justify-center
+                      hover:scale-105
+                      transition-all
+                    "
+                  >
+                    <ChevronRight size={16} />
+                  </button>
+                )}
               </div>
-            </div>
-            <span
-              style={{ fontFamily: "var(--font-sans)" }}
-              className="text-[10px] text-foreground/65 w-16 text-center truncate leading-tight"
-            >
-              {c.name}
-            </span>
-          </motion.button>
-        ))}
+            ))}
+          </motion.div>
+        </div>
       </div>
     </div>
   );
 }
+function ClientStoryViewer({ clients, activeIdx, setActiveIdx, onClose }) {
+  const active = clients[activeIdx];
+  const [progress, setProgress] = useState(0);
+  const videoRef = useRef(null);
+  const animationRef = useRef(null);
+  useEffect(() => {
+    setProgress(0);
 
+    const updateProgress = () => {
+      const video = videoRef.current;
+
+      if (video && video.duration) {
+        setProgress((video.currentTime / video.duration) * 100);
+      }
+
+      animationRef.current = requestAnimationFrame(updateProgress);
+    };
+
+    animationRef.current = requestAnimationFrame(updateProgress);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [activeIdx]);
+
+  const handleTimeUpdate = () => {
+    const video = videoRef.current;
+
+    if (!video || !video.duration) return;
+
+    setProgress((video.currentTime / video.duration) * 100);
+  };
+  const goPrev = () => {
+    if (activeIdx > 0) {
+      setActiveIdx((prev) => prev - 1);
+    }
+  };
+
+  const goNext = () => {
+    if (activeIdx < clients.length - 1) {
+      setActiveIdx((prev) => prev + 1);
+    } else {
+      onClose();
+    }
+  };
+
+  const visibleCards = [];
+
+  for (
+    let i = Math.max(0, activeIdx - 2);
+    i <= Math.min(clients.length - 1, activeIdx + 2);
+    i++
+  ) {
+    visibleCards.push({
+      client: clients[i],
+      index: i,
+    });
+  }
+
+  return (
+    <motion.div
+      className="
+        fixed inset-0
+        z-[500]
+        bg-black/90
+        backdrop-blur-xl
+        flex items-center justify-center
+      "
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      {/* Close */}
+      <button
+        onClick={onClose}
+        className="
+          absolute
+          top-6
+          right-6
+          z-50
+          text-white
+        "
+      >
+        <X size={34} />
+      </button>
+
+      {/* Prev */}
+      {activeIdx > 0 && (
+        <button
+          onClick={goPrev}
+          className="
+            absolute
+            left-[calc(50%-250px)]
+            top-1/2
+            -translate-y-1/2
+            z-50
+            w-7
+            h-7
+            rounded-full
+            bg-white/20
+            backdrop-blur
+            flex items-center justify-center
+             cursor-pointer
+            hover:bg-white
+          "
+        >
+          <ChevronLeft />
+        </button>
+      )}
+
+      {/* Next */}
+      {activeIdx < clients.length - 1 && (
+        <button
+          onClick={goNext}
+          className="
+            absolute
+            right-[calc(50%-250px)]
+            top-1/2
+            -translate-y-1/2
+            z-50
+            w-7
+            h-7
+            rounded-full
+            bg-white/20
+            backdrop-blur
+            flex items-center justify-center
+            cursor-pointer
+            hover:bg-white
+          "
+        >
+          <ChevronRight />
+        </button>
+      )}
+
+      <AnimatePresence mode="popLayout">
+        <div className="flex items-center gap-8">
+          {visibleCards.map(({ client, index }) => {
+            const diff = index - activeIdx;
+
+            let width = 200;
+            let height = 350;
+            let opacity = 0.5;
+
+            if (Math.abs(diff) === 1) {
+              width = 200;
+              height = 350;
+              opacity = 0.55;
+            }
+
+            if (diff === 0) {
+              width = 420;
+              height = 700;
+              opacity = 1;
+            }
+
+            return (
+              <motion.div
+                key={client.id}
+                layout
+                initial={{
+                  opacity: 0,
+                  scale: 0.96,
+                }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                }}
+                exit={{
+                  opacity: 0,
+                  scale: 0.96,
+                }}
+                transition={{
+                  duration: 0.18,
+                  ease: "easeOut",
+                }}
+                className="
+                  relative
+                  overflow-hidden
+                  rounded-3xl
+                  bg-neutral-900
+                  shadow-2xl
+                  shrink-0
+                "
+                style={{
+                  width,
+                  height,
+                  opacity,
+                }}
+              >
+                {/* Active story */}
+                {diff === 0 ? (
+                  <>
+                    {/* Progress Bar */}
+                    <div className="absolute top-3 left-3 right-3 z-20">
+                      <div className="h-[3px] rounded-full bg-white/25 overflow-hidden">
+                        <motion.div
+                          className="h-full bg-white rounded-full"
+                          style={{
+                            width: `${progress}%`,
+                          }}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Header */}
+                    <div className="absolute top-6 left-4 z-20 flex items-center gap-2">
+                      <div
+                        className={`
+          w-10 h-10 rounded-full
+          bg-gradient-to-br ${client.bg}
+          flex items-center justify-center
+          text-white font-bold
+        `}
+                      >
+                        {client.initials}
+                      </div>
+
+                      <div className="text-white">
+                        <div className="font-semibold">{client.name}</div>
+
+                        <div className="text-xs text-white/60">
+                          {client.tagline}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Video */}
+                    <video
+                      ref={videoRef}
+                      key={client.id}
+                      src={client.videoUrl}
+                      autoPlay
+                      muted
+                      playsInline
+                      preload="auto"
+                      onEnded={goNext}
+                      className="w-full h-full object-cover"
+                    />
+
+                    {/* Bottom Gradient */}
+                    <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black/80 to-transparent" />
+
+                    {/* Footer */}
+                    <div className="absolute bottom-6 left-5 right-5 z-20">
+                      <div className="text-white text-xl font-bold">
+                        {client.name}
+                      </div>
+
+                      <div className="text-white/70 text-sm">
+                        {client.tagline}
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {/* Side Story Card */}
+                    <video
+                      src={client.videoUrl}
+                      muted
+                      className="
+        w-full
+        h-full
+        object-cover
+      "
+                    />
+
+                    <div className="absolute inset-0 bg-black/55" />
+
+                    <div
+                      className="
+        absolute inset-0
+        flex flex-col
+        items-center justify-center
+        text-white
+      "
+                    >
+                      <div
+                        className={`
+          w-16 h-16
+          rounded-full
+          bg-gradient-to-br ${client.bg}
+          flex items-center justify-center
+          border-2 border-white
+          text-white font-bold
+        `}
+                      >
+                        {client.initials}
+                      </div>
+
+                      <div className="mt-3 font-semibold">{client.name}</div>
+
+                      <div className="text-xs text-white/60 mt-1">
+                        {client.tagline}
+                      </div>
+                    </div>
+                  </>
+                )}
+              </motion.div>
+            );
+          })}
+        </div>
+      </AnimatePresence>
+    </motion.div>
+  );
+}
 // ─────────────────────────────────────────────────────────────────────────────
 // CLIENTS BAR  ← rightOffset prop added
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1476,18 +1950,18 @@ export function ClientsBar({ sidebarWidth = 0, rightOffset = 0 }) {
           {/* Right fade */}
           <div className="absolute right-0 top-0 bottom-0 w-12 z-10 pointer-events-none bg-gradient-to-l from-card to-transparent" />
 
-          <InfiniteCarousel onClientClick={openClient} viewedIds={viewed} />
+          {/* <InfiniteCarousel onClientClick={openClient} viewedIds={viewed} /> */}
+          <ClientsCarousel onClientClick={openClient} viewedIds={viewed} />
         </div>
       </div>
 
       {/* ── Video viewer modal ── */}
       {viewerOpen && (
-        <VideoViewer
+        <ClientStoryViewer
           clients={CLIENTS}
           activeIdx={activeIdx}
           setActiveIdx={handleSetActiveIdx}
           onClose={closeViewer}
-          closing={closing}
         />
       )}
     </>
