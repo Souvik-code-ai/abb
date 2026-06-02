@@ -925,7 +925,7 @@ function StatItem({ target, suffix, lbl, delay = 0, visible }) {
   return (
     <div>
       <div
-        style={{ fontFamily: "var(--font-heading, 'Georgia, serif')" }}
+        style={{ fontFamily: "var(--font-heading)" }}
         className="text-base font-bold text-primary leading-tight tabular-nums"
       >
         {value}
@@ -1062,7 +1062,7 @@ export function DesktopSidebar({ currentPage, navigate }) {
           <div style={{ display: "none" }}>
             <div
               style={{
-                fontFamily: "Georgia, serif",
+                fontFamily: "var(--font-heading)",
                 fontSize: 17,
                 fontWeight: 700,
                 color: "var(--primary)",
@@ -1142,7 +1142,7 @@ export function DesktopSidebar({ currentPage, navigate }) {
             {/* Label */}
             <span
               style={{
-                fontFamily: "var(--font-heading, Georgia, serif)",
+                fontFamily: "var(--font-heading)",
                 fontWeight: 500,
                 fontSize: 13,
                 opacity: hovered ? 1 : 0,
@@ -1204,7 +1204,7 @@ export function DesktopSidebar({ currentPage, navigate }) {
 
             <span
               style={{
-                fontFamily: "var(--font-heading, Georgia, serif)",
+                fontFamily: "var(--font-heading)",
                 fontWeight: 500,
                 fontSize: 13,
                 opacity: hovered ? 1 : 0,
