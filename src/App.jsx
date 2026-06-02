@@ -37,7 +37,7 @@ export default function App() {
   };
 
   const PageComponent = PAGES[currentPage];
-  const sidebarWidth = sidebarCollapsed ? 88 : 240;
+  const sidebarWidth = sidebarCollapsed ? 72 : 240;
 
   return (
     <div className="bg-background text-foreground min-h-screen">
@@ -66,11 +66,11 @@ export default function App() {
             left  = sidebar right edge
             right = right panel left edge
             Always rendered — stops before the right panel on xl screens ── */}
-      <ClientsBar sidebarWidth={sidebarWidth} rightOffset={RIGHT_PANEL_WIDTH} />
+      <ClientsBar sidebarWidth={72} rightOffset={RIGHT_PANEL_WIDTH} />
 
       {/* ── Fixed RIGHT PANEL — always visible on xl+, full height ── */}
       <aside
-        className="hidden xl:flex flex-col fixed top-0 right-0 h-full z-40 border-l border-border bg-card"
+        className="hidden xl:flex flex-col fixed top-0 right-0 h-full z-40  bg-background"
         style={{ width: `${RIGHT_PANEL_WIDTH}px` }}
       >
         <div className="flex-1 overflow-y-auto scrollbar-hide py-4 px-3 flex flex-col gap-4">

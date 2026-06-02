@@ -1094,7 +1094,7 @@ export function PostCard({ post }) {
   };
   return (
     <>
-      <article className="border-b border-border bg-card">
+      <article className=" bg-background">
         {/* Post header */}
         <div className="flex items-center gap-3 px-4 py-3">
           <div className="w-9 h-9 rounded-full border border-primary/50 bg-gradient-to-br from-lime-700 to-primary flex items-center justify-center flex-shrink-0">

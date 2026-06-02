@@ -194,7 +194,7 @@ function SectionHeader({ icon: Icon, title, action, onAction }) {
 // ─────────────────────────────────────────────────────────────────────────────
 function UpcomingEvents({ navigate }) {
   return (
-    <div className="bg-card overflow-hidden ">
+    <div className="bg-background overflow-hidden ">
       <SectionHeader
         icon={Calendar}
         title="Upcoming Events"
@@ -314,7 +314,7 @@ function CaseStudies({ navigate }) {
   const [hovered, setHovered] = useState(null);
 
   return (
-    <div className="bg-card overflow-hidden ">
+    <div className="bg-background overflow-hidden ">
       <SectionHeader
         icon={BookOpen}
         title="Case Studies"
@@ -377,7 +377,6 @@ function CaseStudies({ navigate }) {
                   style={{
                     background: cs.accent + "30",
                     color: cs.accent,
-                    border: `1px solid ${cs.accent}40`,
                   }}
                 >
                   {cs.readTime}
@@ -402,7 +401,7 @@ function CaseStudies({ navigate }) {
       <div className="px-4 pb-4 pt-1">
         <button
           onClick={() => navigate?.("blog")}
-          className="w-full py-2.5 rounded-xl text-[12px] font-semibold border border-border hover:border-primary/40 hover:bg-primary/5 text-foreground transition-all duration-200"
+          className="w-full py-2.5 rounded-xl text-[12px] font-semibold hover:bg-primary/5 text-foreground transition-all duration-200"
           style={{ fontFamily: "var(--font-heading)", letterSpacing: "0.04em" }}
         >
           All Case Studies →
@@ -434,7 +433,7 @@ function AwardsAchievements() {
   ];
 
   return (
-    <div className="bg-card  overflow-hidden ">
+    <div className="bg-background  overflow-hidden ">
       {/* Header */}
       <div className="flex items-center justify-between px-5 pt-5 pb-4">
         <div className="flex items-center gap-2.5">
@@ -577,7 +576,7 @@ function AwardsAchievements() {
             initial={{ opacity: 0, x: 12 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: i * 0.06, duration: 0.3 }}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all duration-200 border"
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all duration-200 "
             style={{
               background:
                 activeIdx === i ? "rgba(163,230,53,0.08)" : "transparent",
@@ -634,13 +633,13 @@ function AwardsAchievements() {
 // ─────────────────────────────────────────────────────────────────────────────
 export function RightPanel({ navigate }) {
   return (
-    <aside className="hidden xl:flex flex-col gap-4 w-[300px] flex-shrink-0">
+    <aside className="hidden xl:flex flex-col gap-4 w-[300px] flex-shrink-0 ">
       {/*
         ── No sticky / max-h / overflow-y-auto here ──
         Panel grows naturally with content.
         Sticky top-4 only if you want it to follow scroll — removed per request.
       */}
-      <div className="flex flex-col gap-4 pb-8 pr-6">
+      <div className="flex flex-col gap-4 pb-8 pr-6 ">
         <UpcomingEvents navigate={navigate} />
         <CaseStudies navigate={navigate} />
         <AwardsAchievements />

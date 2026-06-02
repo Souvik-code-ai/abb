@@ -171,6 +171,7 @@ import { useEffect, useRef, useState } from "react";
 // import { ClientsBar } from "../StoriesBar";
 import { PostCard } from "../PostCard";
 import { QuickNav } from "../QuickNav";
+import { ClientsBar } from "../StoriesBar";
 
 const STORIES = [
   {
@@ -361,9 +362,9 @@ function AnimatedPostCard({ post, index }) {
 
 export function HomePage({ navigate, currentPage, sidebarWidth = 240 }) {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background ">
       {/* Mobile top bar */}
-      <div className="lg:hidden sticky top-0 z-30 bg-card/96 backdrop-blur-sm border-b border-border px-5 h-14 flex items-center justify-between">
+      <div className="lg:hidden sticky top-0 z-30 bg-card/96 backdrop-blur-sm  px-5 h-14 flex items-center justify-between">
         <div
           style={{ fontFamily: "'Cinzel', serif" }}
           className="text-lg font-bold text-primary"
