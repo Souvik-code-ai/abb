@@ -362,9 +362,9 @@ function AnimatedPostCard({ post, index }) {
 
 export function HomePage({ navigate, currentPage, sidebarWidth = 240 }) {
   return (
-    <div className="min-h-screen bg-background ">
+    <div className="min-h-screen bg-background lg:pt-10 pt-45 ">
       {/* Mobile top bar */}
-      <div className="lg:hidden sticky top-0 z-30 bg-card/96 backdrop-blur-sm  px-5 h-14 flex items-center justify-between">
+      {/* <div className="lg:hidden sticky top-0 z-30 bg-card/96 backdrop-blur-sm  px-5 h-14 flex items-center justify-between">
         <div
           style={{ fontFamily: "'Cinzel', serif" }}
           className="text-lg font-bold text-primary"
@@ -377,7 +377,7 @@ export function HomePage({ navigate, currentPage, sidebarWidth = 240 }) {
             <div key={i} className="w-1 h-1 rounded-full bg-foreground/40" />
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* Stories bar */}
       {/* <StoriesBar

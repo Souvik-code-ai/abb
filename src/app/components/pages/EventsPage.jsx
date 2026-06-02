@@ -438,7 +438,7 @@ function CategoryDetail({ category, onBack }) {
 function CategoryGrid({ onSelect }) {
   return (
     <motion.div
-      className="w-full min-h-screen bg-background lg:pt-25 pt-35"
+      className="w-full min-h-screen bg-background lg:pt-0 pt-35"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}

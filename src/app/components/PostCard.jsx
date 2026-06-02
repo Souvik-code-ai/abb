@@ -744,7 +744,7 @@ import {
   MessageSquare,
   CheckCircle2,
 } from "lucide-react";
-
+import Logo from "../../assets/logo.jpg";
 // ── MessageModal ───────────────────────────────────────────────────────────────
 function MessageModal({ open, onClose }) {
   const [form, setForm] = useState({
@@ -1102,7 +1102,7 @@ export function PostCard({ post }) {
               style={{ fontFamily: "'Cinzel', serif" }}
               className="text-xs font-bold text-white"
             >
-              AB
+              <img src={Logo} alt="" />
             </span>
           </div>
           <div className="flex-1 min-w-0">

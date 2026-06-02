@@ -5,7 +5,6 @@ import {
   Info,
   Image,
   Star,
-  BookOpen,
   Mail,
   Contact,
   ShieldCheck,
@@ -15,8 +14,12 @@ import {
   ChevronUp,
   MessageCircle,
   EllipsisVertical,
+  User,
+  NotebookTabs,
+  MapPin,
 } from "lucide-react";
 import Logo from "../../assets/logo.jpg";
+import { MessageModal } from "./ui/MessageModal";
 const MORE_ITEMS = [
   { id: "privacy", label: "Privacy Policy", Icon: Shield },
   { id: "terms", label: "Terms & Conditions", Icon: FileText },
@@ -26,10 +29,11 @@ const NAV_ITEMS = [
   { id: "home", label: "Home", Icon: Home },
   { id: "events", label: "Events", Icon: Info },
   { id: "digital", label: "Digital", Icon: Image },
-  { id: "contact", label: "Contact", Icon: Contact },
+  { id: "presense", label: "Presense", Icon: MapPin },
   { id: "message", label: "Message", Icon: MessageCircle },
-  { id: "eshibition", label: "Exhibition", Icon: BookOpen },
+  { id: "eshibition", label: "Exhibition", Icon: Star },
   { id: "activation", label: "Activation", Icon: ShieldCheck },
+  { id: "profile", label: "Profile", Icon: User },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -99,6 +103,7 @@ const STATS = [
 export function DesktopSidebar({ currentPage, navigate }) {
   const [hovered, setHovered] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
+  const [messageOpen, setMessageOpen] = useState(false);
   const moreRef = useRef(null);
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -163,6 +168,11 @@ export function DesktopSidebar({ currentPage, navigate }) {
           <button
             key={id}
             onClick={() => {
+              if (id === "message") {
+                setMessageOpen(true);
+                return;
+              }
+
               navigate(id);
               setMoreOpen(false);
             }}
@@ -471,6 +481,7 @@ export function DesktopSidebar({ currentPage, navigate }) {
           </div>
         ))}
       </div>
+      <MessageModal open={messageOpen} onClose={() => setMessageOpen(false)} />
     </aside>
   );
 }

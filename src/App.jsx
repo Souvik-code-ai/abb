@@ -13,7 +13,7 @@ import { TermsPage } from "./app/components/pages/TermsPage";
 import { EventsSection } from "./app/components/pages/EventsPage";
 import { MessagePage } from "./app/components/pages/MessagePage";
 import { RightPanel } from "./app/components/pages/RightPanel";
-
+import { MobileTopBar } from "./app/components/MobileTopBar";
 const PAGES = {
   home: HomePage,
   about: AboutPage,
@@ -52,7 +52,7 @@ export default function App() {
       `}</style>
 
       {/* ── Achievement modal ── */}
-      <AchievementsModal onExplore={() => navigate("events")} />
+      {/* <AchievementsModal onExplore={() => navigate("events")} /> */}
 
       {/* ── Fixed LEFT sidebar — desktop only ── */}
       <DesktopSidebar
@@ -70,13 +70,14 @@ export default function App() {
 
       {/* ── Fixed RIGHT PANEL — always visible on xl+, full height ── */}
       <aside
-        className="hidden xl:flex flex-col fixed top-0 right-0 h-full z-40  bg-background"
+        className="hidden lg:flex flex-col fixed top-0 right-0 h-full z-40  bg-background"
         style={{ width: `${RIGHT_PANEL_WIDTH}px` }}
       >
         <div className="flex-1 overflow-y-auto scrollbar-hide py-4 px-3 flex flex-col gap-4">
           <RightPanel navigate={navigate} />
         </div>
       </aside>
+      <MobileTopBar />
 
       {/* ────────────────────────────────────────────────────
           DESKTOP MAIN
