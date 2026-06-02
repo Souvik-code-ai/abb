@@ -846,7 +846,6 @@
 //   );
 // }
 import { useEffect, useRef, useState } from "react";
-import Logo from "../../assets/logo.jpg";
 import {
   Phone,
   Home,
@@ -1008,7 +1007,7 @@ export function DesktopSidebar({ currentPage, navigate }) {
           }}
         >
           <img
-            src={Logo}
+            src="https://abybabyevents.com/assets/img/assets1/image1/logo/abybaby%20event-white-01.png"
             alt="AbyBaby"
             style={{ width: "100%", height: "100%", objectFit: "contain" }}
             onError={(e) => {
