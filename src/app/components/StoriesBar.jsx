@@ -409,7 +409,7 @@ function ClientsCarousel({ onClientClick, viewedIds }) {
             {pages.map((clients, pageIndex) => (
               <div
                 key={pageIndex}
-                className="relative flex gap-4 min-w-full justify-center px-10"
+                className="relative flex md:gap-4 min-w-full justify-center px-10 gap-1 "
               >
                 {/* PREV BUTTON */}
                 {pageIndex === page && hasPrev && (
@@ -417,8 +417,13 @@ function ClientsCarousel({ onClientClick, viewedIds }) {
                     onClick={goPrev}
                     className="
                       absolute
-                      left-1
-                      top-6
+                      min-[768px]:left-1
+                      min-[484px]:left-9
+                      min-[452px]:left-6
+                      min-[427px]:left-2
+                      left-0
+                      min-[768px]:top-6
+                      top-3.5
                       z-30
                       w-5
                       h-5
@@ -446,7 +451,7 @@ function ClientsCarousel({ onClientClick, viewedIds }) {
                     onClick={() =>
                       onClientClick(pageIndex * ITEMS_PER_PAGE + idx)
                     }
-                    className="flex flex-col items-center gap-1.5 flex-shrink-0"
+                    className="flex flex-col items-center gap-1 flex-shrink-0"
                   >
                     <div
                       className={`p-[2px] rounded-full ${
@@ -455,7 +460,7 @@ function ClientsCarousel({ onClientClick, viewedIds }) {
                           : "bg-gradient-to-tr from-orange-500 via-pink-500 to-purple-500"
                       }`}
                     >
-                      <div className="w-16 h-16 rounded-full bg-white p-[2px]">
+                      <div className="md:w-16 md:h-16 rounded-full bg-white p-[2px] w-12 h-12">
                         <img
                           src={c.logo}
                           alt={c.name}
@@ -498,8 +503,13 @@ function ClientsCarousel({ onClientClick, viewedIds }) {
                     onClick={goNext}
                     className="
                       absolute
-                      right-1
-                      top-6
+                      min-[768px]:right-1
+                      min-[484px]:right-9
+                      min-[452px]:right-6
+                      min-[427px]:right-2
+                      right-0
+                      min-[768px]:top-6
+                      top-3.5
                       z-30
                       w-5
                       h-5

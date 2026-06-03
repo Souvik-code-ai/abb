@@ -100,7 +100,7 @@ export function CompanyProfileSection() {
     "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80",
   ];
   return (
-    <div className="w-full px-6 py-10 space-y-20">
+    <div className="w-full px-6 lg:py-10 space-y-10  pt-[180px]">
       {/* HERO */}
       <section className="relative h-[500px] rounded-3xl overflow-hidden">
         <img
@@ -127,17 +127,12 @@ export function CompanyProfileSection() {
       {/* PORTFOLIO SECTION */}
       <section>
         <div className="flex items-center justify-between mb-8">
-          <h2
-            className="text-3xl font-bold"
-            style={{ fontFamily: "'Cinzel', serif" }}
-          >
-            Company Portfolio
-          </h2>
+          <h2 className="text-3xl font-bold font-sans">Company Portfolio</h2>
 
           <a
             href={PORTFOLIO.pdf}
             download
-            className="hidden md:flex items-center gap-2 px-5 py-2 rounded-full bg-amber-600 text-white hover:bg-amber-700 transition"
+            className="hidden md:flex items-center gap-2 px-5 py-2 rounded-full bg-lime-600 text-white hover:bg-lime-700 transition"
           >
             <Download size={18} />
             Download PDF
@@ -159,18 +154,15 @@ export function CompanyProfileSection() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
 
             <div className="absolute bottom-6 left-6 right-6">
-              <span className="inline-block px-3 py-1 rounded-full bg-amber-600 text-white text-xs mb-4">
+              <span className="inline-block px-3 py-1 rounded-full bg-lime-600 text-white text-xs mb-4 font-sans">
                 COMPANY PROFILE
               </span>
 
-              <h3
-                className="text-white text-3xl font-bold line-clamp-2"
-                style={{ fontFamily: "'Cinzel', serif" }}
-              >
+              <h3 className="text-white text-3xl font-bold line-clamp-2 font-sans">
                 {PORTFOLIO.title}
               </h3>
 
-              <p className="text-white/70 mt-3 max-w-xl">
+              <p className="text-white/70 mt-3 max-w-xl font-sans">
                 {PORTFOLIO.description}
               </p>
             </div>
@@ -178,12 +170,7 @@ export function CompanyProfileSection() {
 
           {/* Content */}
           <div className="flex flex-col justify-center">
-            <h3
-              className="text-3xl font-bold"
-              style={{ fontFamily: "'Cinzel', serif" }}
-            >
-              Discover Our Work
-            </h3>
+            <h3 className="text-3xl font-bold font-sans">Discover Our Work</h3>
 
             <p className="text-muted-foreground mt-4 leading-relaxed">
               Explore our exhibitions, event management projects, digital
@@ -196,7 +183,7 @@ export function CompanyProfileSection() {
                 href={PORTFOLIO.pdf}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-3 rounded-full bg-amber-600 text-white hover:bg-amber-700 transition"
+                className="flex items-center gap-2 px-6 py-3 rounded-full bg-lime-600 text-white hover:bg-lime-700 transition"
               >
                 <Eye size={18} />
                 View Portfolio
@@ -233,12 +220,7 @@ export function CompanyProfileSection() {
       </section>
       {/* PROCESS */}
       <section>
-        <h2
-          className="text-3xl font-bold mb-8"
-          style={{ fontFamily: "'Cinzel', serif" }}
-        >
-          Our Process
-        </h2>
+        <h2 className="text-3xl font-bold mb-8 font-sans">Our Process</h2>
 
         <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
           {PROCESS_CARDS.map((item) => (
@@ -256,10 +238,7 @@ export function CompanyProfileSection() {
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
 
               <div className="absolute bottom-6 left-6 right-6">
-                <h3
-                  className="text-white text-2xl font-bold line-clamp-2"
-                  style={{ fontFamily: "'Cinzel', serif" }}
-                >
+                <h3 className="text-white text-2xl font-bold line-clamp-2 font-sans">
                   {item.title}
                 </h3>
 
@@ -271,37 +250,10 @@ export function CompanyProfileSection() {
       </section>
 
       {/* INSTAGRAM STATS */}
-      <section>
-        <div className="grid grid-cols-3 gap-6">
-          {STATS.map((stat) => (
-            <motion.div
-              key={stat.label}
-              whileHover={{ y: -4 }}
-              className="rounded-3xl bg-white/5 border border-white/10 p-8 text-center"
-            >
-              <h3
-                className="text-4xl md:text-6xl font-bold text-amber-500"
-                style={{ fontFamily: "'Cinzel', serif" }}
-              >
-                {stat.value}
-              </h3>
-
-              <p className="mt-3 text-muted-foreground uppercase">
-                {stat.label}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
 
       {/* SERVICES */}
       <section>
-        <h2
-          className="text-3xl font-bold mb-8"
-          style={{ fontFamily: "'Cinzel', serif" }}
-        >
-          Core Services
-        </h2>
+        <h2 className="text-3xl font-bold mb-8 font-sans">Core Services</h2>
 
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
           {SERVICES.map((service) => (
@@ -319,10 +271,7 @@ export function CompanyProfileSection() {
               <div className="absolute inset-0 bg-black/40" />
 
               <div className="absolute bottom-5 left-5 right-5">
-                <h3
-                  className="text-white text-xl font-semibold line-clamp-2"
-                  style={{ fontFamily: "'Cinzel', serif" }}
-                >
+                <h3 className="text-white text-xl font-semibold line-clamp-2 font-sans">
                   {service.title}
                 </h3>
               </div>
@@ -333,10 +282,7 @@ export function CompanyProfileSection() {
 
       {/* TECHNOLOGIES */}
       <section>
-        <h2
-          className="text-3xl font-bold mb-8"
-          style={{ fontFamily: "'Cinzel', serif" }}
-        >
+        <h2 className="text-3xl font-bold mb-8 font-sans">
           Working Technologies
         </h2>
 
@@ -358,12 +304,7 @@ export function CompanyProfileSection() {
 
       {/* GALLERY */}
       <section>
-        <h2
-          className="text-3xl font-bold mb-8"
-          style={{ fontFamily: "'Cinzel', serif" }}
-        >
-          Project Gallery
-        </h2>
+        <h2 className="text-3xl font-bold mb-8 font-sans">Project Gallery</h2>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {GALLERY.map((image, index) => (

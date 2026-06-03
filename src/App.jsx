@@ -16,6 +16,7 @@ import { RightPanel } from "./app/components/pages/RightPanel";
 import { MobileTopBar } from "./app/components/MobileTopBar";
 import { ExhibitionsSection } from "./app/components/pages/ExhibitionPage";
 import { CompanyProfileSection } from "./app/components/pages/ProfilePage";
+import { DigitalSection } from "./app/components/pages/Digitalpage";
 const PAGES = {
   home: HomePage,
   about: AboutPage,
@@ -27,6 +28,7 @@ const PAGES = {
   message: MessagePage,
   exhibition: ExhibitionsSection,
   profile: CompanyProfileSection,
+  digital:DigitalSection
 };
 
 const RIGHT_PANEL_WIDTH = 300; // px — must match RightPanel's fixed width

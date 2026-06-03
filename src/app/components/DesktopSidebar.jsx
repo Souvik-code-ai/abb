@@ -18,7 +18,7 @@ import {
   NotebookTabs,
   MapPin,
 } from "lucide-react";
-import Logo from "../../assets/download.jpg";
+import Logo from "../../assets/logo.jpg";
 import { MessageModal } from "./ui/MessageModal";
 const MORE_ITEMS = [
   { id: "privacy", label: "Privacy Policy", Icon: Shield },
@@ -135,7 +135,7 @@ export function DesktopSidebar({ currentPage, navigate }) {
     >
       {/* ── Logo ─────────────────────────────────────────────── */}
       <div
-        className="border-border flex items-center rounded-2xl cursor-pointer"
+        className="border-border flex items-center rounded-2xl cursor-pointer "
         style={{
           height: 72,
           paddingLeft: 15,
@@ -147,10 +147,11 @@ export function DesktopSidebar({ currentPage, navigate }) {
           src={Logo}
           alt="AbyBaby"
           style={{
-            width: 70,
-            height: 70,
+            width: 50,
+            height: 50,
             objectFit: "contain",
           }}
+          className="border-black border-r border-b rounded-2xl "
         />
       </div>
 

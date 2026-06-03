@@ -91,7 +91,7 @@ function EventCard({ event, showType }) {
 
         {showType && (
           <div className="absolute top-4 right-4">
-            <span className="px-3 py-1 rounded-full bg-amber-600 text-white text-xs font-semibold">
+            <span className="px-3 py-1 rounded-full bg-lime-600 text-white text-xs font-semibold">
               {event.type}
             </span>
           </div>
@@ -99,10 +99,7 @@ function EventCard({ event, showType }) {
       </div>
 
       <div className="p-4">
-        <h3
-          className="font-semibold text-lg"
-          style={{ fontFamily: "'Cinzel', serif" }}
-        >
+        <h3 className="font-sans text-lg font-semibold tracking-wide text-foreground line-clamp-1">
           {event.name}
         </h3>
 
@@ -128,7 +125,7 @@ function ProgressItem({ title, value }) {
           initial={{ width: 0 }}
           whileInView={{ width: `${value}%` }}
           transition={{ duration: 1 }}
-          className="h-full bg-amber-500 rounded-full"
+          className="h-full bg-lime-500 rounded-full"
         />
       </div>
     </div>
@@ -143,12 +140,7 @@ function EventHighlights() {
       <div className="grid lg:grid-cols-2 gap-10 items-start">
         {/* Left: Progress Metrics */}
         <div className="space-y-8">
-          <h2
-            className="text-2xl font-bold"
-            style={{ fontFamily: "'Cinzel', serif" }}
-          >
-            Event Highlights
-          </h2>
+          <h2 className="text-2xl font-bold font-sans">Event Highlights</h2>
 
           <ProgressItem title="Client Satisfaction" value={95} />
           <ProgressItem title="On-Time Delivery" value={92} />
@@ -157,12 +149,7 @@ function EventHighlights() {
 
         {/* Right: Event Gallery */}
         <div>
-          <h2
-            className="text-2xl font-bold mb-6"
-            style={{ fontFamily: "'Cinzel', serif" }}
-          >
-            Event Gallery
-          </h2>
+          <h2 className="text-2xl font-bold mb-6 font-sans">Event Gallery</h2>
 
           <div className="grid grid-cols-2 gap-4">
             {featuredEvents.map((event) => (
@@ -180,10 +167,7 @@ function EventHighlights() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
                 <div className="absolute bottom-0 left-0 p-3">
-                  <p
-                    className="text-white text-sm font-semibold"
-                    style={{ fontFamily: "'Cinzel', serif" }}
-                  >
+                  <p className="text-white text-sm font-semibold">
                     {event.name}
                   </p>
                 </div>
@@ -471,15 +455,7 @@ export function EventsSection() {
     <div className="w-full min-h-screen bg-background  lg:pt-0 pt-[140px]">
       {/* Heading */}
       <div className="px-6 pt-8 pb-6">
-        <h1
-          style={{
-            fontFamily: "'Cinzel', serif",
-            letterSpacing: "0.06em",
-          }}
-          className="text-2xl font-bold text-foreground"
-        >
-          Events
-        </h1>
+        <h1 className="font-sans text-3xl font-bold text-foreground">Events</h1>
 
         <p className="text-muted-foreground text-sm mt-1">
           Explore our latest events and achievements
@@ -493,9 +469,9 @@ export function EventsSection() {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-5 py-2 rounded-full transition-all ${
+              className={`px-5 py-2 rounded-full transition-all md:text-base text-xs ${
                 activeTab === tab
-                  ? "bg-amber-600 text-white"
+                  ? "bg-lime-600 text-white"
                   : "bg-white/5 text-muted-foreground"
               }`}
             >
@@ -508,7 +484,7 @@ export function EventsSection() {
       {/* CONTENT SECTION */}
 
       {/* CONTENT SECTION */}
-      <div className="px-6 pb-8">
+      <div className="min-[418px]:px-6 pb-8 min-[395px]:px-4 px-2">
         {activeTab === "upcoming" && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {EVENTS.filter((event) => event.status === "upcoming").map(
