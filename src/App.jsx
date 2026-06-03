@@ -14,6 +14,8 @@ import { EventsSection } from "./app/components/pages/EventsPage";
 import { MessagePage } from "./app/components/pages/MessagePage";
 import { RightPanel } from "./app/components/pages/RightPanel";
 import { MobileTopBar } from "./app/components/MobileTopBar";
+import { ExhibitionsSection } from "./app/components/pages/ExhibitionPage";
+import { CompanyProfileSection } from "./app/components/pages/ProfilePage";
 const PAGES = {
   home: HomePage,
   about: AboutPage,
@@ -23,6 +25,8 @@ const PAGES = {
   terms: TermsPage,
   events: EventsSection,
   message: MessagePage,
+  exhibition: ExhibitionsSection,
+  profile: CompanyProfileSection,
 };
 
 const RIGHT_PANEL_WIDTH = 300; // px — must match RightPanel's fixed width

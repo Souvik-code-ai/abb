@@ -18,7 +18,7 @@ import {
   NotebookTabs,
   MapPin,
 } from "lucide-react";
-import Logo from "../../assets/logo.jpg";
+import Logo from "../../assets/download.jpg";
 import { MessageModal } from "./ui/MessageModal";
 const MORE_ITEMS = [
   { id: "privacy", label: "Privacy Policy", Icon: Shield },
@@ -31,7 +31,7 @@ const NAV_ITEMS = [
   { id: "digital", label: "Digital", Icon: Image },
   { id: "presense", label: "Presense", Icon: MapPin },
   { id: "message", label: "Message", Icon: MessageCircle },
-  { id: "eshibition", label: "Exhibition", Icon: Star },
+  { id: "exhibition", label: "Exhibition", Icon: Star },
   { id: "activation", label: "Activation", Icon: ShieldCheck },
   { id: "profile", label: "Profile", Icon: User },
 ];
@@ -147,8 +147,8 @@ export function DesktopSidebar({ currentPage, navigate }) {
           src={Logo}
           alt="AbyBaby"
           style={{
-            width: 42,
-            height: 42,
+            width: 70,
+            height: 70,
             objectFit: "contain",
           }}
         />

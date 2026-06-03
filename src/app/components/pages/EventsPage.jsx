@@ -3,546 +3,534 @@ import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, Calendar, MapPin, ChevronRight } from "lucide-react";
 
 // ── Categories with one cover image each ──────────────────────────────────────
-const CATEGORIES = [
+const EVENTS = [
   {
-    id: "cultural",
-    label: "Cultural",
-    cover:
+    id: 1,
+    type: "Cultural",
+    status: "upcoming",
+    name: "Durga Puja Celebration",
+    date: "12 Oct 2026",
+    location: "Kolkata",
+    attendees: 450,
+    image:
+      "https://images.unsplash.com/photo-1604999333679-b86d54738315?w=600&h=400&fit=crop",
+  },
+
+  {
+    id: 2,
+    type: "Cultural",
+    status: "expired",
+    name: "Heritage Dance Night",
+    date: "18 Nov 2023",
+    location: "Mumbai",
+    attendees: 320,
+    image:
       "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&h=400&fit=crop",
-    description: "Celebrating heritage, art & traditions",
   },
+
   {
-    id: "launch",
-    label: "Product Launch",
-    cover:
+    id: 5,
+    type: "Product Launch",
+    status: "upcoming",
+    name: "EV SUV Grand Reveal",
+    date: "8 Feb 2027",
+    location: "Pune",
+    attendees: 580,
+    image:
       "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&h=400&fit=crop",
-    description: "Grand reveals & brand moments",
   },
+
   {
-    id: "rnr",
-    label: "RNR & Strategy Meets",
-    cover:
-      "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&h=400&fit=crop",
-    description: "Recognition, rewards & leadership summits",
-  },
-  {
-    id: "conference",
-    label: "Conference",
-    cover:
+    id: 12,
+    type: "Conference",
+    status: "expired",
+    name: "Innovation Tech Conference",
+    date: "3 Mar 2024",
+    location: "Mumbai",
+    attendees: 720,
+    image:
       "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&h=400&fit=crop",
-    description: "Industry forums & knowledge sessions",
   },
+
   {
-    id: "bandhan",
-    label: "Tata Bandhan",
-    cover:
-      "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600&h=400&fit=crop",
-    description: "Community & family celebrations",
+    id: 15,
+    type: "Tata Bandhan",
+    status: "upcoming",
+    name: "Tata Bandhan Family Day",
+    date: "26 Jan 2027",
+    location: "Jamshedpur",
+    attendees: 610,
+    image:
+      "https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=600&h=400&fit=crop",
   },
+
   {
-    id: "zero",
-    label: "Zero Festival",
-    cover:
+    id: 18,
+    type: "Zero Festival",
+    status: "upcoming",
+    name: "Zero Festival Opening Gala",
+    date: "1 Dec 2026",
+    location: "Kolkata",
+    attendees: 870,
+    image:
       "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=400&fit=crop",
-    description: "Music, culture & zero-waste living",
   },
 ];
-
-// ── All events per category ────────────────────────────────────────────────────
-// Replace url, name, date, location with your real data
-const EVENTS = {
-  cultural: [
-    {
-      id: 1,
-      name: "Durga Puja Celebration",
-      date: "12 Oct 2024",
-      location: "Kolkata",
-      url: "https://images.unsplash.com/photo-1604999333679-b86d54738315?w=600&h=400&fit=crop",
-    },
-    {
-      id: 2,
-      name: "Heritage Dance Night",
-      date: "18 Nov 2023",
-      location: "Mumbai",
-      url: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&h=400&fit=crop",
-    },
-    {
-      id: 3,
-      name: "Folk Art Exhibition",
-      date: "5 Jan 2024",
-      location: "Delhi",
-      url: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&h=400&fit=crop",
-    },
-    {
-      id: 4,
-      name: "Classical Music Evening",
-      date: "22 Mar 2024",
-      location: "Chennai",
-      url: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&h=400&fit=crop",
-    },
-  ],
-  launch: [
-    {
-      id: 5,
-      name: "EV SUV Grand Reveal",
-      date: "8 Feb 2024",
-      location: "Pune",
-      url: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&h=400&fit=crop",
-    },
-    {
-      id: 6,
-      name: "Smart Home Series Launch",
-      date: "14 Sep 2023",
-      location: "Bengaluru",
-      url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop",
-    },
-    {
-      id: 7,
-      name: "Apparel Collection Drop",
-      date: "30 Nov 2024",
-      location: "Chennai",
-      url: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop",
-    },
-  ],
-  rnr: [
-    {
-      id: 8,
-      name: "Annual Sales R&R 2024",
-      date: "20 Jan 2024",
-      location: "Goa",
-      url: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&h=400&fit=crop",
-    },
-    {
-      id: 9,
-      name: "Leadership Strategy Summit",
-      date: "5 Apr 2023",
-      location: "Jaipur",
-      url: "https://images.unsplash.com/photo-1531058020387-3be344556be6?w=600&h=400&fit=crop",
-    },
-    {
-      id: 10,
-      name: "Team Excellence Awards",
-      date: "15 Dec 2024",
-      location: "Hyderabad",
-      url: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop",
-    },
-    {
-      id: 11,
-      name: "Q3 Strategy Offsite",
-      date: "9 Aug 2024",
-      location: "Shimla",
-      url: "https://images.unsplash.com/photo-1560439514-4e9645039924?w=600&h=400&fit=crop",
-    },
-  ],
-  conference: [
-    {
-      id: 12,
-      name: "Innovation Tech Conference",
-      date: "3 Mar 2024",
-      location: "Mumbai",
-      url: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&h=400&fit=crop",
-    },
-    {
-      id: 13,
-      name: "Sustainability Forum 2023",
-      date: "11 Jul 2023",
-      location: "Delhi",
-      url: "https://images.unsplash.com/photo-1560439514-4e9645039924?w=600&h=400&fit=crop",
-    },
-    {
-      id: 14,
-      name: "Future of Work Summit",
-      date: "28 Feb 2024",
-      location: "Bengaluru",
-      url: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=600&h=400&fit=crop",
-    },
-  ],
-  bandhan: [
-    {
-      id: 15,
-      name: "Tata Bandhan Family Day",
-      date: "26 Jan 2024",
-      location: "Jamshedpur",
-      url: "https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=600&h=400&fit=crop",
-    },
-    {
-      id: 16,
-      name: "Bandhan Cultural Evening",
-      date: "14 Aug 2023",
-      location: "Pune",
-      url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600&h=400&fit=crop",
-    },
-    {
-      id: 17,
-      name: "Community Felicitation",
-      date: "2 Oct 2024",
-      location: "Mumbai",
-      url: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&h=400&fit=crop",
-    },
-  ],
-  zero: [
-    {
-      id: 18,
-      name: "Zero Festival Opening Gala",
-      date: "1 Dec 2024",
-      location: "Kolkata",
-      url: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=400&fit=crop",
-    },
-    {
-      id: 19,
-      name: "Zero Waste Art Installation",
-      date: "17 Feb 2023",
-      location: "Delhi",
-      url: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&h=400&fit=crop",
-    },
-    {
-      id: 20,
-      name: "Zero Festival Night Stage",
-      date: "3 Dec 2023",
-      location: "Goa",
-      url: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&h=400&fit=crop",
-    },
-    {
-      id: 21,
-      name: "Green Pavilion Showcase",
-      date: "5 Dec 2024",
-      location: "Goa",
-      url: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&h=400&fit=crop",
-    },
-  ],
-};
-
-// ── Lightbox ───────────────────────────────────────────────────────────────────
-function Lightbox({ event, onClose }) {
+function EventCard({ event, showType }) {
   return (
     <motion.div
-      className="fixed inset-0 z-[300] flex items-center justify-center px-4"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      onClick={onClose}
+      whileHover={{ y: -4 }}
+      className="overflow-hidden rounded-2xl border border-white/10 bg-white/5"
     >
-      <div className="absolute inset-0 bg-black/85 backdrop-blur-md" />
-      <motion.div
-        className="relative max-w-2xl w-full rounded-2xl overflow-hidden shadow-2xl"
-        initial={{ scale: 0.92, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.92, opacity: 0 }}
-        transition={{ type: "spring", stiffness: 300, damping: 28 }}
-        onClick={(e) => e.stopPropagation()}
-      >
+      <div className="relative">
         <img
-          src={event.url}
+          src={event.image}
           alt={event.name}
-          className="w-full object-cover max-h-[60vh]"
+          className="w-full h-60 object-cover"
         />
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 to-transparent px-6 py-6">
-          <p
-            style={{ fontFamily: "'Cinzel', serif" }}
-            className="text-white text-xl font-bold"
-          >
-            {event.name}
-          </p>
-          <div className="flex items-center gap-4 mt-2">
-            <span className="flex items-center gap-1.5 text-white/60 text-sm">
-              <Calendar size={13} /> {event.date}
-            </span>
-            <span className="flex items-center gap-1.5 text-white/60 text-sm">
-              <MapPin size={13} /> {event.location}
+
+        {showType && (
+          <div className="absolute top-4 right-4">
+            <span className="px-3 py-1 rounded-full bg-amber-600 text-white text-xs font-semibold">
+              {event.type}
             </span>
           </div>
-        </div>
-        <button
-          onClick={onClose}
-          className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/50 backdrop-blur flex items-center justify-center text-white/80 hover:text-white hover:bg-black/70 transition-all text-sm"
+        )}
+      </div>
+
+      <div className="p-4">
+        <h3
+          className="font-semibold text-lg"
+          style={{ fontFamily: "'Cinzel', serif" }}
         >
-          ✕
-        </button>
-      </motion.div>
+          {event.name}
+        </h3>
+
+        <div className="mt-3 space-y-2 text-sm text-muted-foreground">
+          <div>📅 {event.date}</div>
+          <div>📍 {event.location}</div>
+          <div>👥 {event.attendees} Attendees</div>
+        </div>
+      </div>
     </motion.div>
+  );
+}
+function ProgressItem({ title, value }) {
+  return (
+    <div>
+      <div className="flex justify-between mb-2">
+        <span>{title}</span>
+        <span>{value}%</span>
+      </div>
+
+      <div className="h-3 rounded-full bg-white/10 overflow-hidden">
+        <motion.div
+          initial={{ width: 0 }}
+          whileInView={{ width: `${value}%` }}
+          transition={{ duration: 1 }}
+          className="h-full bg-amber-500 rounded-full"
+        />
+      </div>
+    </div>
+  );
+}
+// ── Lightbox ───────────────────────────────────────────────────────────────────
+function EventHighlights() {
+  const featuredEvents = EVENTS.slice(0, 4);
+
+  return (
+    <div className="max-w-7xl mx-auto">
+      <div className="grid lg:grid-cols-2 gap-10 items-start">
+        {/* Left: Progress Metrics */}
+        <div className="space-y-8">
+          <h2
+            className="text-2xl font-bold"
+            style={{ fontFamily: "'Cinzel', serif" }}
+          >
+            Event Highlights
+          </h2>
+
+          <ProgressItem title="Client Satisfaction" value={95} />
+          <ProgressItem title="On-Time Delivery" value={92} />
+          <ProgressItem title="Repeat Clients" value={88} />
+        </div>
+
+        {/* Right: Event Gallery */}
+        <div>
+          <h2
+            className="text-2xl font-bold mb-6"
+            style={{ fontFamily: "'Cinzel', serif" }}
+          >
+            Event Gallery
+          </h2>
+
+          <div className="grid grid-cols-2 gap-4">
+            {featuredEvents.map((event) => (
+              <motion.div
+                key={event.id}
+                whileHover={{ scale: 1.03 }}
+                className="relative overflow-hidden rounded-2xl group"
+              >
+                <img
+                  src={event.image}
+                  alt={event.name}
+                  className="w-full h-44 object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+
+                <div className="absolute bottom-0 left-0 p-3">
+                  <p
+                    className="text-white text-sm font-semibold"
+                    style={{ fontFamily: "'Cinzel', serif" }}
+                  >
+                    {event.name}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
 // ── Category Detail View ───────────────────────────────────────────────────────
-function CategoryDetail({ category, onBack }) {
-  const events = EVENTS[category.id] || [];
-  const [lightboxEvent, setLightboxEvent] = useState(null);
+// function CategoryDetail({ category, onBack }) {
+//   const events = EVENTS[category.id] || [];
+//   const [lightboxEvent, setLightboxEvent] = useState(null);
 
-  return (
-    <motion.div
-      className="w-full min-h-screen bg-background"
-      initial={{ opacity: 0, x: 40 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: 40 }}
-      transition={{ duration: 0.25 }}
-    >
-      {/* Header with Breadcrumb */}
-      <div className="px-6 pt-6 pb-4 border-b border-border">
-        {/* Breadcrumb trail */}
-        <nav
-          className="flex items-center gap-2 mb-4 px-4 py-2 rounded-xl w-fit"
-          style={{
-            background: "rgba(255,255,255,0.05)",
-            border: "1px solid rgba(255,255,255,0.1)",
-          }}
-          aria-label="Breadcrumb"
-        >
-          <motion.button
-            onClick={onBack}
-            whileTap={{ scale: 0.95 }}
-            whileHover={{ scale: 1.03 }}
-            className="flex items-center gap-1.5 transition-colors group"
-          >
-            <span
-              style={{ fontFamily: "'Cinzel', serif", letterSpacing: "0.06em" }}
-              className="text-sm font-semibold transition-colors"
-              onMouseEnter={(e) => (e.target.style.color = "#c8883c")}
-              onMouseLeave={(e) =>
-                (e.target.style.color = "rgba(255,255,255,0.7)")
-              }
-              // inline style so it always renders visible
-              // className color can be overridden by theme
-            >
-              <span style={{ color: "rgba(255,255,255,0.7)" }}>Events</span>
-            </span>
-          </motion.button>
+//   return (
+//     <motion.div
+//       className="w-full min-h-screen bg-background"
+//       initial={{ opacity: 0, x: 40 }}
+//       animate={{ opacity: 1, x: 0 }}
+//       exit={{ opacity: 0, x: 40 }}
+//       transition={{ duration: 0.25 }}
+//     >
+//       {/* Header with Breadcrumb */}
+//       <div className="px-6 pt-6 pb-4 border-b border-border">
+//         {/* Breadcrumb trail */}
+//         <nav
+//           className="flex items-center gap-2 mb-4 px-4 py-2 rounded-xl w-fit"
+//           style={{
+//             background: "rgba(255,255,255,0.05)",
+//             border: "1px solid rgba(255,255,255,0.1)",
+//           }}
+//           aria-label="Breadcrumb"
+//         >
+//           <motion.button
+//             onClick={onBack}
+//             whileTap={{ scale: 0.95 }}
+//             whileHover={{ scale: 1.03 }}
+//             className="flex items-center gap-1.5 transition-colors group"
+//           >
+//             <span
+//               style={{ fontFamily: "'Cinzel', serif", letterSpacing: "0.06em" }}
+//               className="text-sm font-semibold transition-colors"
+//               onMouseEnter={(e) => (e.target.style.color = "#c8883c")}
+//               onMouseLeave={(e) =>
+//                 (e.target.style.color = "rgba(255,255,255,0.7)")
+//               }
+//               // inline style so it always renders visible
+//               // className color can be overridden by theme
+//             >
+//               <span style={{ color: "rgba(255,255,255,0.7)" }}>Events</span>
+//             </span>
+//           </motion.button>
 
-          <ChevronRight
-            size={14}
-            style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}
-          />
+//           <ChevronRight
+//             size={14}
+//             style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}
+//           />
 
-          <span
-            style={{
-              fontFamily: "'Cinzel', serif",
-              letterSpacing: "0.06em",
-              color: "#c8883c",
-              fontSize: "0.875rem",
-              fontWeight: 600,
-            }}
-          >
-            {category.label}
-          </span>
-        </nav>
+//           <span
+//             style={{
+//               fontFamily: "'Cinzel', serif",
+//               letterSpacing: "0.06em",
+//               color: "#c8883c",
+//               fontSize: "0.875rem",
+//               fontWeight: 600,
+//             }}
+//           >
+//             {category.label}
+//           </span>
+//         </nav>
 
-        {/* Page title row */}
-        <div className="flex items-center gap-3">
-          <motion.button
-            onClick={onBack}
-            whileTap={{ scale: 0.9 }}
-            className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-colors"
-            style={{
-              background: "rgba(255,255,255,0.06)",
-              border: "1px solid rgba(255,255,255,0.1)",
-            }}
-            aria-label="Back to Events"
-          >
-            <ArrowLeft size={18} className="text-foreground" />
-          </motion.button>
+//         {/* Page title row */}
+//         <div className="flex items-center gap-3">
+//           <motion.button
+//             onClick={onBack}
+//             whileTap={{ scale: 0.9 }}
+//             className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-colors"
+//             style={{
+//               background: "rgba(255,255,255,0.06)",
+//               border: "1px solid rgba(255,255,255,0.1)",
+//             }}
+//             aria-label="Back to Events"
+//           >
+//             <ArrowLeft size={18} className="text-foreground" />
+//           </motion.button>
 
-          <div>
-            <h2
-              style={{ fontFamily: "'Cinzel', serif", letterSpacing: "0.05em" }}
-              className="text-xl font-bold text-foreground leading-tight"
-            >
-              {category.label}
-            </h2>
-            <p className="text-muted-foreground text-xs mt-0.5">
-              {events.length} {events.length === 1 ? "event" : "events"} found
-            </p>
-          </div>
-        </div>
-      </div>
+//           <div>
+//             <h2
+//               style={{ fontFamily: "'Cinzel', serif", letterSpacing: "0.05em" }}
+//               className="text-xl font-bold text-foreground leading-tight"
+//             >
+//               {category.label}
+//             </h2>
+//             <p className="text-muted-foreground text-xs mt-0.5">
+//               {events.length} {events.length === 1 ? "event" : "events"} found
+//             </p>
+//           </div>
+//         </div>
+//       </div>
 
-      {/* Events grid */}
-      <div className="px-4 py-6">
-        <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {events.map((event, i) => (
-            <motion.div
-              key={event.id}
-              className="group rounded-2xl overflow-hidden cursor-pointer"
-              style={{
-                border: "1px solid rgba(255,255,255,0.07)",
-                boxShadow: "0 2px 16px rgba(0,0,0,0.3)",
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.06, duration: 0.3 }}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => setLightboxEvent(event)}
-            >
-              {/* Image */}
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <img
-                  src={event.url}
-                  alt={event.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-              </div>
+//       {/* Events grid */}
+//       <div className="px-4 py-6">
+//         <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+//           {events.map((event, i) => (
+//             <motion.div
+//               key={event.id}
+//               className="group rounded-2xl overflow-hidden cursor-pointer"
+//               style={{
+//                 border: "1px solid rgba(255,255,255,0.07)",
+//                 boxShadow: "0 2px 16px rgba(0,0,0,0.3)",
+//               }}
+//               initial={{ opacity: 0, y: 20 }}
+//               animate={{ opacity: 1, y: 0 }}
+//               transition={{ delay: i * 0.06, duration: 0.3 }}
+//               whileHover={{ scale: 1.02 }}
+//               whileTap={{ scale: 0.98 }}
+//               onClick={() => setLightboxEvent(event)}
+//             >
+//               {/* Image */}
+//               <div className="relative aspect-[4/3] overflow-hidden">
+//                 <img
+//                   src={event.url}
+//                   alt={event.name}
+//                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+//                   loading="lazy"
+//                 />
+//                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+//               </div>
 
-              {/* Info below image */}
-              <div
-                className="px-4 py-3"
-                style={{
-                  background: "rgba(255,255,255,0.03)",
-                  borderTop: "1px solid rgba(255,255,255,0.06)",
-                }}
-              >
-                <p
-                  style={{ fontFamily: "'Cinzel', serif" }}
-                  className="text-foreground text-sm font-semibold leading-snug line-clamp-1"
-                >
-                  {event.name}
-                </p>
-                <div className="flex items-center gap-3 mt-1.5 flex-wrap">
-                  <span className="flex items-center gap-1 text-muted-foreground text-xs">
-                    <Calendar
-                      size={11}
-                      className="flex-shrink-0"
-                      style={{ color: "#c8883c" }}
-                    />
-                    {event.date}
-                  </span>
-                  <span className="flex items-center gap-1 text-muted-foreground text-xs">
-                    <MapPin
-                      size={11}
-                      className="flex-shrink-0"
-                      style={{ color: "#c8883c" }}
-                    />
-                    {event.location}
-                  </span>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
+//               {/* Info below image */}
+//               <div
+//                 className="px-4 py-3"
+//                 style={{
+//                   background: "rgba(255,255,255,0.03)",
+//                   borderTop: "1px solid rgba(255,255,255,0.06)",
+//                 }}
+//               >
+//                 <p
+//                   style={{ fontFamily: "'Cinzel', serif" }}
+//                   className="text-foreground text-sm font-semibold leading-snug line-clamp-1"
+//                 >
+//                   {event.name}
+//                 </p>
+//                 <div className="flex items-center gap-3 mt-1.5 flex-wrap">
+//                   <span className="flex items-center gap-1 text-muted-foreground text-xs">
+//                     <Calendar
+//                       size={11}
+//                       className="flex-shrink-0"
+//                       style={{ color: "#c8883c" }}
+//                     />
+//                     {event.date}
+//                   </span>
+//                   <span className="flex items-center gap-1 text-muted-foreground text-xs">
+//                     <MapPin
+//                       size={11}
+//                       className="flex-shrink-0"
+//                       style={{ color: "#c8883c" }}
+//                     />
+//                     {event.location}
+//                   </span>
+//                 </div>
+//               </div>
+//             </motion.div>
+//           ))}
+//         </motion.div>
+//       </div>
 
-      {/* Lightbox */}
-      <AnimatePresence>
-        {lightboxEvent && (
-          <Lightbox
-            event={lightboxEvent}
-            onClose={() => setLightboxEvent(null)}
-          />
-        )}
-      </AnimatePresence>
-    </motion.div>
-  );
-}
+//       {/* Lightbox */}
+//       <AnimatePresence>
+//         {lightboxEvent && (
+//           <Lightbox
+//             event={lightboxEvent}
+//             onClose={() => setLightboxEvent(null)}
+//           />
+//         )}
+//       </AnimatePresence>
+//     </motion.div>
+//   );
+// }
 
 // ── Category Grid (main view) ──────────────────────────────────────────────────
-function CategoryGrid({ onSelect }) {
+// function CategoryGrid({ onSelect }) {
+//   return (
+//     <motion.div
+//       className="w-full min-h-screen bg-background lg:pt-0 pt-35"
+//       initial={{ opacity: 0 }}
+//       animate={{ opacity: 1 }}
+//       exit={{ opacity: 0 }}
+//       transition={{ duration: 0.2 }}
+//     >
+//       {/* Heading */}
+//       <div className="px-6 pt-8 pb-6">
+//         <h1
+//           style={{ fontFamily: "'Cinzel', serif", letterSpacing: "0.06em" }}
+//           className="text-2xl font-bold text-foreground"
+//         >
+//           Events
+//         </h1>
+//         <p className="text-muted-foreground text-sm mt-1">
+//           Select a category to explore
+//         </p>
+//       </div>
+
+//       {/* Category cards — one cover image each */}
+//       <div className="px-4 pb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+//         {CATEGORIES.map((cat, i) => (
+//           <motion.button
+//             key={cat.id}
+//             onClick={() => onSelect(cat)}
+//             className="group relative rounded-2xl overflow-hidden text-left w-full"
+//             style={{
+//               border: "1px solid rgba(255,255,255,0.08)",
+//               boxShadow: "0 4px 24px rgba(0,0,0,0.35)",
+//               aspectRatio: "4/3",
+//             }}
+//             initial={{ opacity: 0, y: 24 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             transition={{ delay: i * 0.07, duration: 0.35 }}
+//             whileHover={{ scale: 1.03 }}
+//             whileTap={{ scale: 0.97 }}
+//           >
+//             {/* Cover image */}
+//             <img
+//               src={cat.cover}
+//               alt={cat.label}
+//               className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+//               loading="lazy"
+//             />
+
+//             {/* Gradient overlay */}
+//             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+
+//             {/* Hover tint */}
+//             <div
+//               className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+//               style={{ background: "rgba(180,120,40,0.12)" }}
+//             />
+
+//             {/* Text */}
+//             <div className="absolute bottom-0 left-0 right-0 px-5 py-4">
+//               <p
+//                 style={{
+//                   fontFamily: "'Cinzel', serif",
+//                   letterSpacing: "0.05em",
+//                 }}
+//                 className="text-white text-lg font-bold leading-tight"
+//               >
+//                 {cat.label}
+//               </p>
+//               <p className="text-white/55 text-xs mt-1">{cat.description}</p>
+
+//               {/* Event count pill */}
+//               <div
+//                 className="mt-2 inline-flex items-center gap-1 px-2.5 py-1 rounded-full"
+//                 style={{
+//                   background: "rgba(180,120,40,0.3)",
+//                   border: "1px solid rgba(180,120,40,0.4)",
+//                 }}
+//               >
+//                 <span
+//                   className="text-[11px] font-semibold text-amber-300"
+//                   style={{ fontFamily: "'Cinzel', serif" }}
+//                 >
+//                   {EVENTS[cat.id]?.length ?? 0} Events
+//                 </span>
+//               </div>
+//             </div>
+//           </motion.button>
+//         ))}
+//       </div>
+//     </motion.div>
+//   );
+// }
+
+// ── EventsSection (root) ───────────────────────────────────────────────────────
+export function EventsSection() {
+  const TABS = ["upcoming", "expired", "highlights"];
+
+  const [activeTab, setActiveTab] = useState("upcoming");
+
   return (
-    <motion.div
-      className="w-full min-h-screen bg-background lg:pt-0 pt-35"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.2 }}
-    >
+    <div className="w-full min-h-screen bg-background  lg:pt-0 pt-[140px]">
       {/* Heading */}
       <div className="px-6 pt-8 pb-6">
         <h1
-          style={{ fontFamily: "'Cinzel', serif", letterSpacing: "0.06em" }}
+          style={{
+            fontFamily: "'Cinzel', serif",
+            letterSpacing: "0.06em",
+          }}
           className="text-2xl font-bold text-foreground"
         >
           Events
         </h1>
+
         <p className="text-muted-foreground text-sm mt-1">
-          Select a category to explore
+          Explore our latest events and achievements
         </p>
       </div>
 
-      {/* Category cards — one cover image each */}
-      <div className="px-4 pb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {CATEGORIES.map((cat, i) => (
-          <motion.button
-            key={cat.id}
-            onClick={() => onSelect(cat)}
-            className="group relative rounded-2xl overflow-hidden text-left w-full"
-            style={{
-              border: "1px solid rgba(255,255,255,0.08)",
-              boxShadow: "0 4px 24px rgba(0,0,0,0.35)",
-              aspectRatio: "4/3",
-            }}
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.07, duration: 0.35 }}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-          >
-            {/* Cover image */}
-            <img
-              src={cat.cover}
-              alt={cat.label}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              loading="lazy"
-            />
-
-            {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-
-            {/* Hover tint */}
-            <div
-              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              style={{ background: "rgba(180,120,40,0.12)" }}
-            />
-
-            {/* Text */}
-            <div className="absolute bottom-0 left-0 right-0 px-5 py-4">
-              <p
-                style={{
-                  fontFamily: "'Cinzel', serif",
-                  letterSpacing: "0.05em",
-                }}
-                className="text-white text-lg font-bold leading-tight"
-              >
-                {cat.label}
-              </p>
-              <p className="text-white/55 text-xs mt-1">{cat.description}</p>
-
-              {/* Event count pill */}
-              <div
-                className="mt-2 inline-flex items-center gap-1 px-2.5 py-1 rounded-full"
-                style={{
-                  background: "rgba(180,120,40,0.3)",
-                  border: "1px solid rgba(180,120,40,0.4)",
-                }}
-              >
-                <span
-                  className="text-[11px] font-semibold text-amber-300"
-                  style={{ fontFamily: "'Cinzel', serif" }}
-                >
-                  {EVENTS[cat.id]?.length ?? 0} Events
-                </span>
-              </div>
-            </div>
-          </motion.button>
-        ))}
+      {/* WRITE THE TAB CODE HERE */}
+      <div className="px-6">
+        <div className="flex gap-3 mb-8">
+          {TABS.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`px-5 py-2 rounded-full transition-all ${
+                activeTab === tab
+                  ? "bg-amber-600 text-white"
+                  : "bg-white/5 text-muted-foreground"
+              }`}
+            >
+              {tab.replace("-", " ").toUpperCase()}
+            </button>
+          ))}
+        </div>
       </div>
-    </motion.div>
-  );
-}
 
-// ── EventsSection (root) ───────────────────────────────────────────────────────
-export function EventsSection() {
-  const [selectedCategory, setSelectedCategory] = useState(null);
+      {/* CONTENT SECTION */}
 
-  return (
-    <AnimatePresence mode="wait">
-      {selectedCategory ? (
-        <CategoryDetail
-          key="detail"
-          category={selectedCategory}
-          onBack={() => setSelectedCategory(null)}
-        />
-      ) : (
-        <CategoryGrid key="grid" onSelect={setSelectedCategory} />
-      )}
-    </AnimatePresence>
+      {/* CONTENT SECTION */}
+      <div className="px-6 pb-8">
+        {activeTab === "upcoming" && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {EVENTS.filter((event) => event.status === "upcoming").map(
+              (event) => (
+                <EventCard key={event.id} event={event} showType />
+              ),
+            )}
+          </div>
+        )}
+
+        {activeTab === "expired" && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {EVENTS.filter((event) => event.status === "expired").map(
+              (event) => (
+                <EventCard key={event.id} event={event} showType={false} />
+              ),
+            )}
+          </div>
+        )}
+
+        {activeTab === "highlights" && <EventHighlights />}
+      </div>
+    </div>
   );
 }

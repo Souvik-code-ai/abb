@@ -289,7 +289,7 @@ function UpcomingEvents({ navigate }) {
       </div>
 
       {/* CTA */}
-      <div className="px-4 pb-4 pt-1">
+      {/* <div className="px-4 pb-4 pt-1">
         <button
           onClick={() => navigate?.("festival")}
           className="w-full py-2.5 rounded-xl text-[12px] font-semibold transition-all duration-200 hover:shadow-md active:scale-[0.98]"
@@ -302,7 +302,7 @@ function UpcomingEvents({ navigate }) {
         >
           View All Events →
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
