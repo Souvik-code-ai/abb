@@ -184,7 +184,7 @@ export function ExhibitionsSection({ navigate }) {
               {/* Close Button */}
               <button
                 onClick={() => setSelectedExhibition(null)}
-                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-black/40 backdrop-blur-md text-white"
+                className="absolute top-3 right-3 w-10 h-10 rounded-full bg-black/40 backdrop-blur-md text-white"
               >
                 ✕
               </button>

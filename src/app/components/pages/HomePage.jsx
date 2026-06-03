@@ -387,7 +387,7 @@ export function HomePage({ navigate, currentPage, sidebarWidth = 240 }) {
       /> */}
 
       {/* Feed — each PostCard slides in from alternating sides */}
-      <div className="max-w-[500px]   overflow-x-hidden mx-auto">
+      <div className="max-w-[500px]   overflow-x-hidden mx-auto ">
         {POSTS.map((post, index) => (
           <AnimatedPostCard key={post.id} post={post} index={index} />
         ))}

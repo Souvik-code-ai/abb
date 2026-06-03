@@ -127,35 +127,47 @@ export function ActivationSection({ navigate }) {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {ACTIVATIONS.map((item) => (
-            <motion.div
-              key={item.id}
-              whileHover={{ y: -6 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => setSelectedActivation(item)}
-              className="relative overflow-hidden rounded-2xl cursor-pointer group h-[380px]"
-            >
-              <img
-                src={item.image}
-                alt={item.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
+<div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[380px]">
+  {ACTIVATIONS.map((item, index) => {
+    const rowIndex = Math.floor(index / 2);
+    const isFirstCardInRow = index % 2 === 0;
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+    const isWide =
+      (rowIndex % 2 === 0 && isFirstCardInRow) ||
+      (rowIndex % 2 === 1 && !isFirstCardInRow);
 
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <span className="text-xs bg-lime-600 px-3 py-1 rounded-full text-white">
-                  {item.type}
-                </span>
+    return (
+      <motion.div
+        key={item.id}
+        whileHover={{ y: -6 }}
+        whileTap={{ scale: 0.98 }}
+        onClick={() => setSelectedActivation(item)}
+        className={`
+          relative overflow-hidden rounded-2xl cursor-pointer group h-full
+          ${isWide ? "md:col-span-2" : "md:col-span-1"}
+        `}
+      >
+        <img
+          src={item.image}
+          alt={item.title}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        />
 
-                <h3 className="text-white text-2xl font-bold mt-3 font-sans">
-                  {item.title}
-                </h3>
-              </div>
-            </motion.div>
-          ))}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+
+        <div className="absolute bottom-0 left-0 right-0 p-6">
+          <span className="text-xs bg-lime-600 px-3 py-1 rounded-full text-white">
+            {item.type}
+          </span>
+
+          <h3 className="text-white text-2xl font-bold mt-3 font-sans">
+            {item.title}
+          </h3>
         </div>
+      </motion.div>
+    );
+  })}
+</div>
 
         {/* Stats */}
         {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
@@ -325,12 +337,12 @@ export function ActivationSection({ navigate }) {
               {/* Close */}
               <button
                 onClick={() => setSelectedActivation(null)}
-                className="absolute top-5 right-5 w-12 h-12 rounded-full
+                className="absolute top-3 right-3 w-10 h-10 rounded-full
                      bg-black/50 backdrop-blur-md
                      text-white text-xl
                      flex items-center justify-center"
               >
-                ×
+                ✕
               </button>
             </motion.div>
           </motion.div>

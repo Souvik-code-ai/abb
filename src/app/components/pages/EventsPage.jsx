@@ -452,7 +452,7 @@ export function EventsSection({ navigate }) {
   const [activeTab, setActiveTab] = useState("upcoming");
 
   return (
-    <div className="w-full min-h-screen bg-background  lg:pt-0 pt-[140px]">
+    <div className="w-full min-h-screen bg-background  lg:pt-0 pt-[150px]">
       {/* Heading */}
       <div className="px-6 pt-8 pb-6">
         <h1 className="font-sans text-3xl font-bold text-foreground">Events</h1>

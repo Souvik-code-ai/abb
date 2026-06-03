@@ -6,7 +6,7 @@ import toyotaDetail from "../../../assets/Tractor/kv2.jpeg";
 import { NextSection } from "./NextSection";
 import krishiCover from "../../../assets/Tractor/kv3.jpeg";
 import krishiDetail from "../../../assets/Tractor/kv4.jpeg";
-
+import kv from "../../../assets/Tractor/kvlogo.png"
 import pmsCover from "../../../assets/Tractor/kv6.jpeg";
 import pmsDetail from "../../../assets/Tractor/kv7.jpeg";
 
@@ -182,9 +182,9 @@ export function DigitalSection({ navigate }) {
               {/* Close */}
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-5 right-5 w-10 h-10 rounded-full bg-black/50 text-white text-xl"
+                className="absolute top-3 right-3 w-10 h-10 rounded-full bg-black/50 text-white text-xl"
               >
-                ×
+                ✕
               </button>
             </motion.div>
           </motion.div>
