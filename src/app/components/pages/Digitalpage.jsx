@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 
-import toyotaCover from "../../../assets/digital/kv.jpg";
-import toyotaDetail from "../../../assets/digital/kv2.jpg";
+import toyotaCover from "../../../assets/Tractor/kv.jpeg";
+import toyotaDetail from "../../../assets/Tractor/kv2.jpeg";
+import { NextSection } from "./NextSection";
+import krishiCover from "../../../assets/Tractor/kv3.jpeg";
+import krishiDetail from "../../../assets/Tractor/kv4.jpeg";
 
-import krishiCover from "../../../assets/digital/krishi-cover.jpg";
-import krishiDetail from "../../../assets/digital/krishi-detail.jpg";
+import pmsCover from "../../../assets/Tractor/kv6.jpeg";
+import pmsDetail from "../../../assets/Tractor/kv7.jpeg";
 
-import pmsCover from "../../../assets/digital/pms-cover.jpg";
-import pmsDetail from "../../../assets/digital/pms-detail.jpg";
-
-export function DigitalSection() {
+export function DigitalSection({ navigate }) {
   const [selectedProject, setSelectedProject] = useState(null);
 
   const DIGITAL_PROJECTS = [
@@ -63,7 +63,7 @@ export function DigitalSection() {
       <div className="w-full min-h-screen bg-background px-6 pt-[180px] lg:py-10">
         {/* Heading */}
         <div className="mb-10">
-          <h1 className="text-3xl font-bold">Digital Solutions</h1>
+          <h1 className="text-3xl font-bold font-sans">Digital Solutions</h1>
 
           <p className="mt-2 text-muted-foreground">
             Showcasing digital campaigns, websites, analytics and engagement
@@ -90,7 +90,7 @@ export function DigitalSection() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
 
               <div className="absolute bottom-0 left-0 right-0 p-6">
-                <h3 className="text-white text-2xl font-bold">
+                <h3 className="text-white text-2xl font-bold font-sans">
                   {project.name}
                 </h3>
 
@@ -132,7 +132,7 @@ export function DigitalSection() {
               {/* Title */}
               <div className="absolute top-8 left-8">
                 <div className="backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl px-6 py-4">
-                  <h2 className="text-white text-3xl font-bold">
+                  <h2 className="text-white text-3xl font-bold font-sans">
                     {selectedProject.name}
                   </h2>
                 </div>
@@ -190,6 +190,11 @@ export function DigitalSection() {
           </motion.div>
         )}
       </AnimatePresence>
+      <NextSection
+        title="Activations"
+        description="Explore brand activations, mall promotions, roadshows and experiential marketing campaigns."
+        onClick={() => navigate("exhibition")}
+      />
     </>
   );
 }

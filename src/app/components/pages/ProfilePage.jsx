@@ -112,10 +112,7 @@ export function CompanyProfileSection() {
         <div className="absolute inset-0 bg-black/50" />
 
         <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-6">
-          <h1
-            className="text-5xl md:text-7xl font-bold text-white"
-            style={{ fontFamily: "'Cinzel', serif" }}
-          >
+          <h1 className="text-5xl md:text-7xl font-bold text-white font-sans">
             ABYBABY
           </h1>
 
@@ -129,14 +126,14 @@ export function CompanyProfileSection() {
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-3xl font-bold font-sans">Company Portfolio</h2>
 
-          <a
+          {/* <a
             href={PORTFOLIO.pdf}
             download
             className="hidden md:flex items-center gap-2 px-5 py-2 rounded-full bg-lime-600 text-white hover:bg-lime-700 transition"
           >
             <Download size={18} />
             Download PDF
-          </a>
+          </a> */}
         </div>
 
         <div className="grid lg:grid-cols-[1.2fr_1fr] gap-8">

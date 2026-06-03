@@ -7,7 +7,9 @@ import image5 from "../../../assets/exhibition/exhibition/f5.jpg";
 import image7 from "../../../assets/exhibition/exhibition/f7.jpg";
 import image6 from "../../../assets/exhibition/exhibition/f6.jpg";
 import { useState } from "react";
-export function ExhibitionsSection() {
+import { NextSection } from "../pages/NextSection.jsx";
+import { useNavigate } from "react-router-dom";
+export function ExhibitionsSection({ navigate }) {
   const [selectedExhibition, setSelectedExhibition] = useState(null);
   const EXHIBITION_STATS = [
     {
@@ -134,9 +136,11 @@ export function ExhibitionsSection() {
 
               {/* Floating Title */}
               <div className="absolute top-8 left-8">
-                <h2 className="text-4xl font-bold font-sans bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                  {selectedExhibition.name}
-                </h2>
+                <div className="backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl px-6 py-4">
+                  <h2 className="text-white text-3xl font-bold font-sans">
+                    {selectedExhibition.name}
+                  </h2>
+                </div>
               </div>
 
               {/* Floating Stats */}
@@ -213,6 +217,11 @@ export function ExhibitionsSection() {
           );
         })}
       </div>
+      <NextSection
+        title="Activations"
+        description="Explore brand activations, mall promotions, roadshows and experiential marketing campaigns."
+        onClick={() => navigate("activation")}
+      />
     </div>
   );
 }

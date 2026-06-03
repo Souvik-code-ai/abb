@@ -1,194 +1,214 @@
-import { useState } from "react";
 import { motion } from "motion/react";
-import {
-  Phone,
-  Mail,
-  MapPin,
-  Component as Instagram,
-  Component as Facebook,
-  Component as Twitter,
-  Component as Youtube,
-  Send,
-  CheckCircle,
-} from "lucide-react";
+import { Phone, MapPin, Building2, Clock, Navigation } from "lucide-react";
 
-const SOCIAL_LINKS = [
-  {
-    Icon: Instagram,
-    label: "Instagram",
-    handle: "@abybaby_group",
-    color: "hover:text-pink-400",
-  },
-  {
-    Icon: Facebook,
-    label: "Facebook",
-    handle: "AbyBaby Group",
-    color: "hover:text-blue-400",
-  },
-  {
-    Icon: Twitter,
-    label: "Twitter",
-    handle: "@abybabygroup",
-    color: "hover:text-sky-400",
-  },
-  {
-    Icon: Youtube,
-    label: "YouTube",
-    handle: "AbyBaby Official",
-    color: "hover:text-red-400",
-  },
-];
+// Replace with your own image
+import officeImage from "../../../assets/mia/ms.jpg";
 
-const CONTACT_INFO = [
-  {
-    Icon: Phone,
-    label: "Call Us",
-    value: "+91 9830832000 || +91 9830974955",
-    sub: "Mon – Sat, 9 AM – 7 PM",
-  },
-  {
-    Icon: Mail,
-    label: "Email Us",
-    value: "sucheta@abybaby.co.in ||shaw.vijay@abybaby.co.in",
-    sub: "We reply within 24 hours",
-  },
-  {
-    Icon: MapPin,
-    label: "Visit Us",
-    value: "6B, Janak Rd, Lake Market, Kalighat Kolkata-700029, Westbengal",
-    sub: "India's #1 BTL Agency",
-  },
-];
+export function ContactPage() {
+  const STATS = [
+    {
+      value: "20+",
+      label: "Years Experience",
+    },
+    {
+      value: "500+",
+      label: "Events Delivered",
+    },
+    {
+      value: "15+",
+      label: "Cities Covered",
+    },
+  ];
 
-export function ContactPage({ navigate, currentPage }) {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = () => {
-    if (!form.name || !form.email || !form.message) return;
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setForm({ name: "", email: "", message: "" });
-    }, 3000);
-  };
+  const CONTACTS = [
+    {
+      icon: Phone,
+      title: "Primary Contact",
+      value: "+91 9830832000",
+      href: "tel:+919830832000",
+    },
+    {
+      icon: Phone,
+      title: "Secondary Contact",
+      value: "+91 9830836000",
+      href: "tel:+919830836000",
+    },
+    {
+      icon: MapPin,
+      title: "Location",
+      value: "Kalighat, Kolkata",
+      href: "#map",
+    },
+  ];
 
   return (
-    <div className="min-h-screen bg-background ">
-      {/* ── Mobile top bar ───────────────────────────────────── */}
-      <div className="lg:hidden sticky top-0 z-30 bg-card/96 backdrop-blur-sm border-b border-border px-5 h-14 flex items-center justify-between">
-        <div
-          style={{ fontFamily: "var(--font-heading)" }}
-          className="text-lg font-bold text-primary"
-        >
-          AbyBaby
-          <span className="text-foreground/65 ml-1 text-base">Group</span>
-        </div>
-        <div className="flex items-center gap-1">
-          {[...Array(3)].map((_, i) => (
-            <div key={i} className="w-1 h-1 rounded-full bg-foreground/40" />
-          ))}
-        </div>
-      </div>
+    <div className="min-h-screen bg-background font-sans pt-[150px] lg:py-10">
+      {/* Hero Section */}
+      <section className="relative h-[80vh] overflow-hidden">
+        <img
+          src={officeImage}
+          alt="AbyBaby Office"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
 
-      {/* ── Page content ─────────────────────────────────────── */}
-      <div className="max-w-[600px] mx-auto px-5 pt-28 pb-24 lg:pt-28">
-        {/* Page heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="mb-8"
-        >
-          <h1
-            style={{ fontFamily: "var(--font-heading)" }}
-            className="text-3xl font-bold text-foreground leading-tight"
-          >
-            Get In <span className="text-primary">Touch</span>
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
+
+        <div className="absolute bottom-10 left-6 lg:left-12 max-w-2xl">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-5">
+            <Building2 size={16} className="text-lime-600" />
+            <span className="text-white text-sm">AbyBaby Events Presence</span>
+          </div>
+
+          <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight font-sans">
+            Let's Talk
           </h1>
-          <p
-            style={{ fontFamily: "var(--font-sans)" }}
-            className="text-foreground/55 text-sm mt-2"
-          >
-            Let's create something extraordinary together.
+
+          <p className="mt-5 text-white/80 text-lg max-w-xl leading-relaxed">
+            We value your feedback and are committed to providing excellent
+            customer service. If you have any questions, concerns, or
+            suggestions, don't hesitate to get in touch with us.
           </p>
-        </motion.div>
-        {/* ── Contact info cards ───────────────────────────── */}
-        <div className="grid grid-cols-1 gap-3 mb-8">
-          {CONTACT_INFO.map(({ Icon, label, value, sub }, i) => (
-            <motion.div
-              key={label}
-              initial={{ opacity: 0, x: -40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="flex items-center gap-4 bg-card border border-border rounded-2xl px-5 py-4"
+        </div>
+      </section>
+
+      {/* Contact Cards */}
+      <section className="max-w-7xl mx-auto px-6 -mt-16 relative z-20">
+        <div className="grid md:grid-cols-3 gap-5">
+          {CONTACTS.map(({ icon: Icon, title, value, href }) => (
+            <a
+              key={title}
+              href={href}
+              className="rounded-3xl border border-white/10 bg-card/90 backdrop-blur-xl p-6 hover:scale-[1.02] transition-all duration-300"
             >
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <Icon size={18} className="text-primary" />
+              <div className="w-12 h-12 rounded-2xl bg-lime-500/10 flex items-center justify-center mb-4">
+                <Icon size={22} className="text-lime-600" />
               </div>
-              <div>
-                <div
-                  style={{ fontFamily: "var(--font-heading)" }}
-                  className="text-[11px] font-semibold text-primary uppercase tracking-widest"
-                >
-                  {label}
-                </div>
-                <div
-                  style={{ fontFamily: "var(--font-sans)" }}
-                  className="text-sm font-medium text-foreground mt-0.5"
-                >
-                  {value}
-                </div>
-                <div
-                  style={{ fontFamily: "var(--font-sans)" }}
-                  className="text-[11px] text-foreground/45 mt-0.5"
-                >
-                  {sub}
-                </div>
-              </div>
-            </motion.div>
+
+              <h3 className="font-semibold text-lg font-sans">{title}</h3>
+
+              <p className="mt-2 text-muted-foreground">{value}</p>
+            </a>
           ))}
         </div>
+      </section>
 
-        {/* ── Socials ──────────────────────────────────────── */}
+      {/* Address Section */}
+      <section className="max-w-7xl mx-auto px-6 py-14">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.35 }}
-          className="bg-card border border-border rounded-2xl px-5 py-5"
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="rounded-[32px] overflow-hidden border border-border"
         >
-          <h2
-            style={{ fontFamily: "var(--font-heading)" }}
-            className="text-base font-bold text-foreground mb-4"
-          >
-            Follow Us
-          </h2>
-          <div className="grid grid-cols-2 gap-3">
-            {SOCIAL_LINKS.map(({ Icon, label, handle, color }) => (
-              <button
-                key={label}
-                className={`flex items-center gap-3 bg-background border border-border rounded-xl px-4 py-3 text-foreground/50 ${color} transition-colors duration-150 group`}
-              >
-                <Icon size={18} className="flex-shrink-0 transition-colors" />
-                <div className="text-left">
-                  <div
-                    style={{ fontFamily: "var(--font-heading)" }}
-                    className="text-[11px] font-semibold uppercase tracking-wider"
-                  >
-                    {label}
-                  </div>
-                  <div
-                    style={{ fontFamily: "var(--font-sans)" }}
-                    className="text-[10px] text-foreground/35 mt-0.5"
-                  >
-                    {handle}
-                  </div>
+          <div className="grid lg:grid-cols-2">
+            <div className="p-8 lg:p-12">
+              <div className="flex items-center gap-3 mb-5">
+                <MapPin size={22} className="text-lime-600" />
+
+                <h2 className="text-3xl font-bold font-sans">
+                  Visit Our Office
+                </h2>
+              </div>
+
+              <p className="text-muted-foreground leading-relaxed mb-8">
+                Meet our team and discuss your next event project.
+              </p>
+
+              <div className="space-y-5">
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-lime-600 font-semibold">
+                    Address
+                  </p>
+
+                  <p className="mt-2 text-lg">
+                    6B, Janak Rd
+                    <br />
+                    Lake Market
+                    <br />
+                    Kalighat
+                    <br />
+                    Kolkata – 700029
+                    <br />
+                    West Bengal
+                  </p>
                 </div>
-              </button>
-            ))}
+
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-lime-600 font-semibold">
+                    Contact
+                  </p>
+
+                  <p className="mt-2">
+                    +91 9830832000
+                    <br />
+                    +91 9830836000
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <Clock size={18} className="text-lime-600" />
+
+                  <span className="text-muted-foreground">
+                    Monday – Saturday | 9 AM – 7 PM
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-muted min-h-[420px]">
+              <iframe
+                title="AbyBaby Office"
+                src="https://maps.google.com/maps?q=6B%20Janak%20Road%20Kolkata&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                className="w-full h-full min-h-[420px]"
+                loading="lazy"
+              />
+            </div>
           </div>
         </motion.div>
-      </div>
+      </section>
+
+      {/* Stats */}
+      {/* <section className="max-w-7xl mx-auto px-6 pb-14">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {STATS.map((item) => (
+            <div
+              key={item.label}
+              className="rounded-3xl border border-border bg-card p-8 text-center"
+            >
+              <h3 className="text-5xl font-bold text-lime-500">{item.value}</h3>
+
+              <p className="mt-3 text-muted-foreground">{item.label}</p>
+            </div>
+          ))}
+        </div>
+      </section> */}
+
+      {/* Directions CTA */}
+      <section className="max-w-7xl mx-auto px-6 pb-20">
+        <div className="rounded-[32px] overflow-hidden bg-gradient-to-r from-lime-500/10 to-lime-500/5 border border-lime-500/20 p-8 lg:p-12">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div>
+              <h2 className="text-3xl font-bold">Need Directions?</h2>
+
+              <p className="mt-3 text-muted-foreground max-w-xl">
+                Navigate directly to our office and connect with our team for
+                event planning, activations, exhibitions and experiential
+                marketing solutions.
+              </p>
+            </div>
+
+            <a
+              href="https://maps.google.com/?q=6B Janak Road Kolkata"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-lime-500 text-black font-semibold"
+            >
+              <Navigation size={18} />
+              Open in Maps
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

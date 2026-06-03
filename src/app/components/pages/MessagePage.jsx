@@ -72,8 +72,8 @@ function FaqItem({ q, a, index }) {
         className="w-full flex items-center justify-between px-5 py-4 text-left bg-card hover:bg-muted/40 transition-colors"
       >
         <span
-          style={{ fontFamily: "var(--font-heading)" }}
-          className="text-sm font-semibold text-foreground pr-4"
+          className="text-sm font-semibold text-foreground pr-4 font-sans
+        "
         >
           {q}
         </span>
@@ -95,10 +95,7 @@ function FaqItem({ q, a, index }) {
             transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
             className="overflow-hidden"
           >
-            <p
-              style={{ fontFamily: "var(--font-sans)" }}
-              className="px-5 pb-4 pt-1 text-sm text-foreground/65 leading-relaxed"
-            >
+            <p className="px-5 pb-4 pt-1 text-sm text-foreground/65 leading-relaxed font-sans">
               {a}
             </p>
           </motion.div>
@@ -146,12 +143,11 @@ export function MessagePage({ navigate }) {
     <div className="min-h-screen bg-background ">
       {/* ── Mobile top bar ── */}
       <div className="lg:hidden sticky top-0 z-30 bg-card/96 backdrop-blur-sm border-b border-border px-5 h-14 flex items-center justify-between">
-        <div
-          style={{ fontFamily: "var(--font-heading)" }}
-          className="text-lg font-bold text-primary"
-        >
+        <div className="text-lg font-bold text-primary font-sans">
           AbyBaby
-          <span className="text-foreground/65 ml-1 text-base">Group</span>
+          <span className="text-foreground/65 ml-1 text-base font-sans">
+            Group
+          </span>
         </div>
         <MessageSquare size={20} className="text-primary" />
       </div>
@@ -226,7 +222,7 @@ export function MessagePage({ navigate }) {
         >
           <h2
             style={{ fontFamily: "var(--font-heading)" }}
-            className="text-base font-bold text-foreground mb-5"
+            className="text-base font-bold text-foreground mb-5 font-sans"
           >
             Send Us a Message
           </h2>

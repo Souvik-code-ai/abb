@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { DesktopSidebar } from "./app/components/DesktopSidebar";
 import { FloatingNav } from "./app/components/FloatingNav";
 import { HomePage } from "./app/components/pages/HomePage";
@@ -16,19 +16,21 @@ import { RightPanel } from "./app/components/pages/RightPanel";
 import { MobileTopBar } from "./app/components/MobileTopBar";
 import { ExhibitionsSection } from "./app/components/pages/ExhibitionPage";
 import { CompanyProfileSection } from "./app/components/pages/ProfilePage";
-import { DigitalSection } from "./app/components/pages/Digitalpage";
+import { DigitalSection } from "./app/components/pages/DigitalPage";
+import { ActivationSection } from "./app/components/pages/ActivationPage";
 const PAGES = {
   home: HomePage,
   about: AboutPage,
   blog: BlogPage,
-  contact: ContactPage,
+  presense: ContactPage,
   privacy: PrivacyPage,
   terms: TermsPage,
   events: EventsSection,
   message: MessagePage,
   exhibition: ExhibitionsSection,
   profile: CompanyProfileSection,
-  digital:DigitalSection
+  digital: DigitalSection,
+  activation: ActivationSection,
 };
 
 const RIGHT_PANEL_WIDTH = 300; // px — must match RightPanel's fixed width

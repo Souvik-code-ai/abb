@@ -94,7 +94,7 @@ export function MessageModal({ open, onClose }) {
 
           {/* Modal */}
           <motion.div
-            className="relative w-full sm:max-w-md rounded-t-3xl sm:rounded-2xl overflow-hidden"
+            className="relative w-full sm:max-w-md rounded-t-3xl sm:rounded-2xl overflow-hidden font-sans"
             style={{
               background: "var(--card)",
               border: "1px solid var(--border)",
@@ -128,16 +128,11 @@ export function MessageModal({ open, onClose }) {
                   {/* Header */}
                   <div className="flex items-start justify-between mb-6">
                     <div>
-                      <h2
-                        className="text-lg font-bold text-foreground"
-                        style={{
-                          fontFamily: "'Cinzel', serif",
-                        }}
-                      >
+                      <h2 className="text-lg font-bold text-foreground font-sans">
                         Send a Message
                       </h2>
 
-                      <p className="text-xs mt-1 text-muted-foreground">
+                      <p className="text-xs mt-1 text-muted-foreground font-sans">
                         to abybaby_group
                       </p>
                     </div>
@@ -222,10 +217,10 @@ export function MessageModal({ open, onClose }) {
                   <button
                     onClick={handleSubmit}
                     disabled={!form.name || !form.email || !form.message}
-                    className="w-full mt-5 py-3 rounded-xl font-semibold"
+                    className="w-full mt-5 py-3 rounded-xl font-semibold font-sans"
                     style={{
                       background: "var(--primary)",
-                      color: "var(--primary-foreground)",
+                      // color: "var(--primary-foreground)",
                       opacity:
                         !form.name || !form.email || !form.message ? 0.5 : 1,
                     }}
@@ -240,21 +235,11 @@ export function MessageModal({ open, onClose }) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                 >
-                  <div
-                    className="w-16 h-16 rounded-full flex items-center justify-center mb-4"
-                    style={{
-                      background: "rgba(163,230,53,.12)",
-                    }}
-                  >
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center mb-4">
                     <CheckCircle2 size={30} style={{ color: "#3f6212" }} />
                   </div>
 
-                  <h3
-                    className="text-lg font-bold mb-2"
-                    style={{
-                      fontFamily: "'Cinzel', serif",
-                    }}
-                  >
+                  <h3 className="text-lg font-bold mb-2 font-sans">
                     Message Sent!
                   </h3>
 

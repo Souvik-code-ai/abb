@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, Calendar, MapPin, ChevronRight } from "lucide-react";
-
+import { NextSection } from "./NextSection";
 // ── Categories with one cover image each ──────────────────────────────────────
 const EVENTS = [
   {
@@ -125,7 +125,7 @@ function ProgressItem({ title, value }) {
           initial={{ width: 0 }}
           whileInView={{ width: `${value}%` }}
           transition={{ duration: 1 }}
-          className="h-full bg-lime-500 rounded-full"
+          className="h-full bg-lime-600 rounded-full"
         />
       </div>
     </div>
@@ -446,7 +446,7 @@ function EventHighlights() {
 // }
 
 // ── EventsSection (root) ───────────────────────────────────────────────────────
-export function EventsSection() {
+export function EventsSection({ navigate }) {
   const TABS = ["upcoming", "expired", "highlights"];
 
   const [activeTab, setActiveTab] = useState("upcoming");
@@ -507,6 +507,11 @@ export function EventsSection() {
 
         {activeTab === "highlights" && <EventHighlights />}
       </div>
+      <NextSection
+        title="Activations"
+        description="Explore brand activations, mall promotions, roadshows and experiential marketing campaigns."
+        onClick={() => navigate("digital")}
+      />
     </div>
   );
 }

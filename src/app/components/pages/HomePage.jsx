@@ -172,7 +172,7 @@ import { useEffect, useRef, useState } from "react";
 import { PostCard } from "../PostCard";
 import { QuickNav } from "../QuickNav";
 import { ClientsBar } from "../StoriesBar";
-
+import { NextSection } from "./NextSection";
 const STORIES = [
   {
     id: "h1",
@@ -392,6 +392,11 @@ export function HomePage({ navigate, currentPage, sidebarWidth = 240 }) {
           <AnimatedPostCard key={post.id} post={post} index={index} />
         ))}
       </div>
+      <NextSection
+        title="Activations"
+        description="Explore brand activations, mall promotions, roadshows and experiential marketing campaigns."
+        onClick={() => navigate("events")}
+      />
     </div>
   );
 }

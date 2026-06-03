@@ -80,10 +80,7 @@ function StatItem({ target, suffix, lbl, delay = 0, visible }) {
 
   return (
     <div>
-      <div
-        style={{ fontFamily: "var(--font-heading)" }}
-        className="text-base font-bold text-primary leading-tight tabular-nums"
-      >
+      <div className="text-base font-bold text-primary leading-tight tabular-nums font-sans">
         {value}
       </div>
       <div className="text-[10px] text-muted-foreground">{lbl}</div>
@@ -199,7 +196,7 @@ export function DesktopSidebar({ currentPage, navigate }) {
               size={20}
               className={`flex-shrink-0 transition-colors ${
                 currentPage === id
-                  ? "text-lime-500"
+                  ? "text-lime-600"
                   : "text-muted-foreground group-hover:text-foregroud"
               }`}
             />
@@ -445,7 +442,7 @@ export function DesktopSidebar({ currentPage, navigate }) {
       </div>
 
       {/* ── Footer: contact ───────────────────────────────────── */}
-      <div
+      {/* <div
         className="border-t border-border"
         style={{
           padding: hovered ? "12px 16px 14px" : "12px 0",
@@ -481,7 +478,7 @@ export function DesktopSidebar({ currentPage, navigate }) {
             </span>
           </div>
         ))}
-      </div>
+      </div> */}
       <MessageModal open={messageOpen} onClose={() => setMessageOpen(false)} />
     </aside>
   );

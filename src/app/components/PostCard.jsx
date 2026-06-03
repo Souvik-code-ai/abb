@@ -850,17 +850,13 @@ function MessageModal({ open, onClose }) {
                     <div>
                       <h2
                         style={{
-                          fontFamily: "'Cinzel', serif",
                           letterSpacing: "0.05em",
                         }}
-                        className="text-lg font-bold text-foreground leading-tight"
+                        className="text-lg font-bold text-foreground leading-tight font-sans"
                       >
                         Send a Message
                       </h2>
-                      <p
-                        className="text-xs mt-1 text-muted-foreground"
-                        style={{ fontFamily: "'Cinzel', serif" }}
-                      >
+                      <p className="text-xs mt-1 text-muted-foreground font-sans">
                         to abybaby_group
                       </p>
                     </div>
@@ -883,10 +879,7 @@ function MessageModal({ open, onClose }) {
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: i * 0.06 }}
                         >
-                          <label
-                            className="block text-[11px] font-semibold mb-1.5 tracking-widest uppercase text-muted-foreground"
-                            style={{ fontFamily: "'Cinzel', serif" }}
-                          >
+                          <label className="block text-[11px] font-semibold mb-1.5 tracking-widest uppercase text-muted-foreground font-sans">
                             {label}
                           </label>
                           <div
@@ -937,10 +930,7 @@ function MessageModal({ open, onClose }) {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.18 }}
                     >
-                      <label
-                        className="block text-[11px] font-semibold mb-1.5 tracking-widest uppercase text-muted-foreground"
-                        style={{ fontFamily: "'Cinzel', serif" }}
-                      >
+                      <label className="block text-[11px] font-semibold mb-1.5 tracking-widest uppercase text-muted-foreground font-sans">
                         Message
                       </label>
                       <div
@@ -991,9 +981,8 @@ function MessageModal({ open, onClose }) {
                     whileTap={{ scale: 0.97 }}
                     whileHover={{ scale: 1.01 }}
                     disabled={!form.name || !form.email || !form.message}
-                    className="w-full mt-5 py-3.5 rounded-xl text-sm font-bold tracking-widest uppercase transition-all"
+                    className="w-full mt-5 py-3.5 rounded-xl text-sm font-bold tracking-widest uppercase transition-all font-sans"
                     style={{
-                      fontFamily: "'Cinzel', serif",
                       background: "var(--primary)",
                       color: "var(--primary-foreground)",
                       boxShadow: "0 4px 20px rgba(163,230,53,0.25)",
@@ -1106,10 +1095,7 @@ export function PostCard({ post }) {
             </span>
           </div>
           <div className="flex-1 min-w-0">
-            <div
-              style={{ fontFamily: "'Cinzel', serif" }}
-              className="text-sm font-semibold text-foreground leading-tight"
-            >
+            <div className="text-sm font-semibold text-foreground leading-tight font-sans">
               abybaby_group
             </div>
             {post.location && (
@@ -1188,7 +1174,7 @@ export function PostCard({ post }) {
                       initial={{ opacity: 0, y: 5 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 5 }}
-                      className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-lime-500 px-2 py-1 text-[10px] font-medium text-white"
+                      className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-lime-600 px-2 py-1 text-[10px] font-medium text-white"
                     >
                       Copied!
                     </motion.div>
@@ -1211,7 +1197,8 @@ export function PostCard({ post }) {
           </div>
 
           <p className="text-sm text-foreground mt-1 leading-snug">
-            <span className="font-semibold">abybaby_group</span> {post.caption}
+            <span className="font-semibold font-sans">abybaby_group</span>{" "}
+            {post.caption}
           </p>
           <div className="text-muted-foreground text-xs mt-1.5 tracking-wide">
             {post.time}
